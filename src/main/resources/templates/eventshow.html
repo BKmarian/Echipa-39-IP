@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Eveniment</title>
+    <th:block th:include="fragments/headerinc :: head"></th:block>
+    <th:block th:include="fragments/layout :: layout"></th:block>
+</head>
+<body>
+<div class="site">
+    <div id="menu">
+        <ul id="meniu">
+            <li><a href="#" th:href="@{/}" class="btnMeniu btnHover">Acasa</a></li>
+            <li><a href="#" th:href="@{/allevents}" class="btnMeniu btnHover" >Evenimente</a></li>
+        </ul>
+    </div>
+
+    <div class="continut">
+        <div class="site">
+            <th:block th:include="fragments/carousel"></th:block>
+            <h2>Detaliile Evenimentului</h2>
+            <div>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Nume:</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" th:text="${event.name}">Nume</p></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Data:</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" th:text="${event.displayFormattedDate()}">date</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Locatie:</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" th:text="${event.location}">Location</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Descriere:</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" th:text="${event.description}">Description</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Imagine:</label>
+                        <div class="col-sm-10">
+                            <td id="pageone" data-role="main" class="ui-content" >
+                                <img th:src="@{'~/images/event' + ${event.id}}" width="400" height="400"/>
+                            </td>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br/> <br/>
+</body>
+<th:block th:include="fragments/layout :: footer"></th:block>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Profilul Meu</title>
+
+    <th:block th:include="fragments/headerinc :: head"></th:block>
+    <th:block th:include="fragments/layout :: layout"></th:block>
+</head>
+<body>
+<div class="site">
+    <div id="menu">
+        <th:block th:include="fragments/ongheader :: header"></th:block>
+    </div>
+
+    <div class="continut">
+    <div class="site">
+    <h2>Detaliile Contului</h2>
+    <div>
+        <form class="form-horizontal" th:object="${ong}" th:action="@{/ong}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Utilizator : </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{username}" pattern="[A-Za-z0-9]{5,40}" title="Only letters are allowed.Length must be between 5 and 40 letters"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Email:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{email}" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,8}" title="Not a valid email"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Nume Complet:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{fullName}" pattern="[A-Z a-z]{5,30}" title="Only letters are allowed.Length must be between 5 and 30 letters"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Telefon:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{phone}" pattern="[+0-9]{0,40}" title="Must be between 0 and 40 characters"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Contact:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{contact}" pattern="[a-zA-Z 0-9]{0,60}" title="Must be between 0 and 60 characters"/>
+                </div>
+            </div>
+            <input type="hidden" class="form-control" th:field="*{password}"/>
+            <div class="row">
+                <button type="submit" class="btnSimple btnMeniu btnHover ">Modifica</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    </div>
+</div>
+
+</body>
+<th:block th:include="fragments/layout :: footer"></th:block>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Evenimente</title>
+
+    <th:block th:include="fragments/headerinc :: head"></th:block>
+    <th:block th:include="fragments/layout :: layout"></th:block>
+</head>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        $('#adminevents').DataTable({
+            "order": [[ 3, "desc" ]]
+        } ); });
+</script>
+<body>
+<div class="site">
+    <div id="menu">
+        <th:block th:include="fragments/adminheader :: header"></th:block>
+    </div>
+
+    <div class="continut">
+        <div class="site">
+    <th:block th:include="fragments/carousel::carousel"></th:block>
+    <div th:if="${not #lists.isEmpty(events)}">
+        <h2>Event List</h2>
+        <table id = "adminevents" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nume</th>
+                <th>Locatie</th>
+                <th>Data</th>
+                <th>Imagine</th>
+                <th>Sterge</th>
+                <th>Detalii</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="event : ${events}">
+                <td th:text="${event.id}">Id</td>
+                <td th:text="${event.name}">Nume</td>
+                <td th:text="${event.location}">Locatie</td>
+                <td th:text="${event.displayFormattedDate()}">Data</td>
+                <td id="pageone" data-role="main" class="ui-content" >
+                    <img th:src="@{'~/images/event' + ${event.id}}" width="20" height="20" onmouseover="Large(this)"/>
+                </td>
+                <td><a th:href="${'/admin/deleteEvent/' + event.id}">Sterge</a></td>
+                <td><a th:href="${ '/admin/event/' + event.id}">Detalii</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <div id="imgbox"></div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+</body>
+<th:block th:include="fragments/layout :: footer"></th:block>
+</html>

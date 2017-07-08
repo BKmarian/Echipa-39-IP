@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Home</title>
+    <th:block th:include="fragments/headerinc :: head"></th:block>
+    <th:block th:include="fragments/layout :: layout"></th:block>
+</head>
+<body>
+<div class="site">
+    <div id="menu">
+        <th:block th:include="fragments/personheader :: header"></th:block>
+    </div>
+    <div class="continut">
+        <th:block th:include="fragments/carousel"></th:block>
+    </div>
+</div>
+</body>
+<th:block th:include="fragments/layout :: footer"></th:block>
+</html>
