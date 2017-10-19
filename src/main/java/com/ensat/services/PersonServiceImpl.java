@@ -24,6 +24,9 @@ public class PersonServiceImpl implements PersonService {
     EventService eventService;
 
     @Autowired
+    UserService userService;
+
+    @Autowired
     public void setPersonRepository(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
@@ -33,36 +36,12 @@ public class PersonServiceImpl implements PersonService {
         return personRepository.findAll();
     }
 
-    @Override
-    public Person getPersonById(Integer id) {
-        return personRepository.findOne(id);
-    }
-
-    @Override
-    public Person savePerson(Person person) {
-        return personRepository.save(person);
-    }
-
-    @Override
-    public void deletePerson(Integer id) {
-        personRepository.delete(id);
-    }
-
-    @Override
-    public Person getPersonByUsername(String username) {
-        return personRepository.getPersonByUsername(username);
-    }
-
-    @Override
-    public Person getPersonByEmail(String email) {
-        return personRepository.getPersonByEmail(email);
-    }
     /**
      * get events which user did not join yet
      */
     @Override
     public List<Event> getEventsNotJoined(Integer userid) {
-        List<Event> eventsByPers = (ArrayList<Event>)user2eventService.getEventsbyPerson(this.getPersonById(userid));
+        List<Event> eventsByPers = (ArrayList<Event>)user2eventService.getEventsbyPerson((Person)userService.getUserById(userid));
         List<Event> allEvents = (ArrayList<Event>)eventService.listAllEvents();
         List<Event> returnList = new ArrayList<Event>();
         for(Event event : allEvents) {

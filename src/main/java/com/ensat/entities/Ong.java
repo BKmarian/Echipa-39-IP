@@ -7,16 +7,8 @@ import javax.persistence.*;
 
  */
 @Entity
-@Table(name = "Ong")
-public class Ong {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
-    private String username;
-    private String password;
-    private String email;
+@DiscriminatorValue(value = "ong")
+public class Ong extends User{
 
     @Column(name = "full_name")
     private String fullName;
@@ -64,47 +56,14 @@ public class Ong {
         this.phone = phone;
     }
 
-    public String getPassword() {
-
-        return password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
     public String getFullName() {
         return fullName;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     @Override
     public String toString() {
-        return " username=" + username + " email" + email + " numar telefon= " + phone;
+        return super.toString()  + " numar telefon= " + phone;
     }
 
 }

@@ -5,12 +5,14 @@ package com.ensat.repositories;
  */
 
 import com.ensat.entities.Ong;
+import com.ensat.entities.Person;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
 
-public interface OngRepository extends CrudRepository<Ong, Integer> {
-    Ong getOngByUsername(String username);
-    Ong getOngByEmail(String email);
+@Transactional
+public interface OngRepository extends UserBaseRepository<Ong> {
 
     @Query("select o from Ong o where o.approved = 0")
     Iterable<Ong> findOngsToAccept();

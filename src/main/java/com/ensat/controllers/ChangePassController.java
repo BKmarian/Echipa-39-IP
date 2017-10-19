@@ -5,6 +5,7 @@ import com.ensat.entities.Ong;
 import com.ensat.entities.Person;
 import com.ensat.services.OngService;
 import com.ensat.services.PersonService;
+import com.ensat.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,9 @@ public class ChangePassController {
 
     @Autowired
     OngService ongService;
+
+    @Autowired
+    UserService userService;
 
     final String fromEmail = "cosminmanolescudans@gmail.com";
 
@@ -44,7 +48,7 @@ public class ChangePassController {
         HttpSession session = request.getSession();
         if(session.getAttribute("userid") == null)
             return "redirect:/login";
-        Person person = personService.getPersonById(Integer.parseInt(session.getAttribute("userid").toString()));
+        Person person = (Person)userService.getUserById(Integer.parseInt(session.getAttribute("userid").toString()));
         String password = request.getParameter("password");
         String verifypassword = request.getParameter("verifypassword");
         String newpassword = request.getParameter("newpassword");
@@ -52,7 +56,7 @@ public class ChangePassController {
             return "redirect:/person/" + person.getId();
         else {
             person.setPassword(newpassword);
-            personService.savePerson(person);
+            userService.saveUser(person);
             return "redirect:/person/" + person.getId();
         }
     }
@@ -62,7 +66,7 @@ public class ChangePassController {
         HttpSession session = request.getSession();
         if(session.getAttribute("ongid") == null)
             return "redirect:/login";
-        Ong ong = ongService.getOngById(Integer.parseInt(session.getAttribute("ongid").toString()));
+        Ong ong = (Ong) userService.getUserById(Integer.parseInt(session.getAttribute("ongid").toString()));
         String password = request.getParameter("password");
         String verifypassword = request.getParameter("verifypassword");
         String newpassword = request.getParameter("newpassword");
@@ -70,7 +74,7 @@ public class ChangePassController {
             return "redirect:/ong/" + ong.getId();
         else {
             ong.setPassword(newpassword);
-            ongService.saveOng(ong);
+            userService.saveUser(ong);
             return "redirect:/ong/" + ong.getId();
         }
     }
@@ -83,11 +87,11 @@ public class ChangePassController {
     public String sendEmail(HttpServletRequest request) throws MessagingException {
         try {
             String email = request.getParameter("email");
-            String password = personService.getPersonByEmail(email).getPassword();
-            String user = personService.getPersonByEmail(email).getFullName();
+            String password = userService.getUserByEmail(email).getPassword();
+            String user = userService.getUserByEmail(email).getUsername();
             if (password == null) {
-                user = ongService.getOngByEmail(email).getUsername();
-                password = ongService.getOngByEmail(email).getPassword();
+                user = userService.getUserByEmail(email).getUsername();
+                password = userService.getUserByEmail(email).getPassword();
             }
             SmtpMailSender.sendMail(email, "Your password", "Your current password is " + password + " and username is " + user);
 

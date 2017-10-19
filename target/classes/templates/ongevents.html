@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Evenimentele Mele</title>
+    <th:block th:include="fragments/headerinc :: head"></th:block>
+    <th:block th:include="fragments/layout :: layout"></th:block>
+</head>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        $('#ongevents').DataTable( {
+            "order": [[ 3, "desc" ]]
+        } ); })
+</script>
+<body>
+<div class="site">
+    <div id="menu">
+        <th:block th:include="fragments/ongheader :: header"></th:block>
+    </div>
+
+    <div class="continut">
+        <div th:if="${#lists.isEmpty(events)}">
+            <h3>Nu ai evenimente create</h3>
+        </div>
+        <div th:if="${not #lists.isEmpty(events)}">
+            <h2>Event List</h2>
+            <table id ="ongevents" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nume</th>
+                    <th>ONG</th>
+                    <th>Data</th>
+                    <th>Imagine</th>
+                    <th>Detalii</th>
+                    <th>Editare</th>
+                    <th>Stergere</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="event : ${events}">
+                    <td th:text="${event.id}"><a href="/event/${event.id}">Id</a></td>
+                    <td th:text="${event.name}">Event name</td>
+                    <td th:text="${event.ong.fullName}">Ong Name</td>
+                    <td th:text="${event.displayFormattedDate()}">Date</td>
+                    <td id="pageone" data-role="main" class="ui-content" >
+                        <img th:src="@{'~/images/event' + ${event.id}}" width="20" height="20" onmouseover="Large(this)"/>
+                    </td>
+                    <td><a th:href="${ '/ong/event/' + event.id}">Detalii</a></td>
+                    <td><a th:href="${'/event/edit/' + event.id}">Editare</a></td>
+                    <td><a th:href="${'/event/delete/' + event.id}">Stergere</a></td>
+                </tr>
+                </tbody>
+            </table>
+            <div id="imgbox"></div>
+        </div>
+    </div>
+</div>
+</body>
+<th:block th:include="fragments/layout :: footer"></th:block>
+</html>

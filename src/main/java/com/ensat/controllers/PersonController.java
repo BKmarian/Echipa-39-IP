@@ -6,6 +6,7 @@ import com.ensat.entities.User2event;
 import com.ensat.services.EventService;
 import com.ensat.services.PersonService;
 import com.ensat.services.User2eventService;
+import com.ensat.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,13 +37,16 @@ public class PersonController {
     @Autowired
     private EventService eventService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("person/profile")
     public String profile(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         if (checkIsPerson(session) != null)
             return checkIsPerson(session);
         Integer userid = Integer.parseInt(session.getAttribute("userid").toString());
-        model.addAttribute("person", personService.getPersonById(userid));
+        model.addAttribute("person", userService.getUserById(userid));
         return "personprofile";
     }
 
@@ -52,7 +56,7 @@ public class PersonController {
         if (checkIsPerson(session) != null)
             return checkIsPerson(session);
         Integer userid = Integer.parseInt(session.getAttribute("userid").toString());
-        model.addAttribute("events", eventService.sortEventsByDate((ArrayList<Event>)user2eventService.getEventsbyPerson(personService.getPersonById(userid))));
+        model.addAttribute("events", eventService.sortEventsByDate((ArrayList<Event>)user2eventService.getEventsbyPerson((Person)userService.getUserById(userid))));
         model.addAttribute("userid",userid);
         return "personevents";
     }
@@ -101,7 +105,7 @@ public class PersonController {
         if (checkIsPerson(session) != null)
             return checkIsPerson(session);
         Integer userid = Integer.parseInt(session.getAttribute("userid").toString());
-        Person person = personService.getPersonById(userid);
+        Person person = (Person)userService.getUserById(userid);
         Event event = eventService.getEventById(eventid);
         user2eventService.saveUser2event(new User2event(person,event));
         return "redirect:/person/allevents";
@@ -117,10 +121,11 @@ public class PersonController {
             return checkIsPerson(session);
         if(person.getPassword() == null) {
             int userId = Integer.parseInt(session.getAttribute("userid").toString());
-            Person p = personService.getPersonById(userId);
+            Person p = (Person)userService.getUserById(userId);
             person.setPassword(p.getPassword());
         }
-        personService.savePerson(person);
+        System.out.println(person);
+        userService.saveUser(person);
         return "redirect:/person/" + person.getId();
     }
 

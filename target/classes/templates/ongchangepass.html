@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Securitate</title>
+
+    <th:block th:include="fragments/headerinc :: head"></th:block>
+    <th:block th:include="fragments/layout :: layout"></th:block>
+</head>
+<body>
+
+<div class="site">
+    <div id="menu">
+        <th:block th:include="fragments/ongheader :: header"></th:block>
+    </div>
+
+    <div class="continut">
+    <div class="site">
+    <h2>Schimba parola</h2>
+    <div>
+        <form class="form-horizontal" th:action="@{/ong/changepassword}" method="POST">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Parola Curenta</label>
+                <input type="password" class="col-sm-3" id="password1" name="password"/>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="password2">Repeta parola</label>
+                <input type="password" class="col-sm-3" id="password2" name="verifypassword"/>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label"  for="password3">Noua parola</label>
+                <input class="col-sm-3" type="password" id="password3" name="newpassword" pattern="[0-9A-Za-z]{5,30}" title="Only letters and numbers.Length must be between 5 and 30 letters"/>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btnSimple btnMeniu btnHover ">Schimba</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    </div>
+</div>
+
+</body>
+<th:block th:include="fragments/layout :: footer"></th:block>
+</html>

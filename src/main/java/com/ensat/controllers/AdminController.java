@@ -4,10 +4,7 @@ import com.ensat.entities.Event;
 import com.ensat.entities.Ong;
 import com.ensat.entities.Person;
 import com.ensat.entities.User2event;
-import com.ensat.services.EventService;
-import com.ensat.services.OngService;
-import com.ensat.services.PersonService;
-import com.ensat.services.User2eventService;
+import com.ensat.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +30,9 @@ public class AdminController {
     @Autowired
     private User2eventService user2eventService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("admin")
     public String adminIndex(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -57,8 +57,8 @@ public class AdminController {
         if(checkIsAdmin(session) != null)
             return checkIsAdmin(session);
         //delete in cascade
-        deleteEvents(ongService.getOngById(ongId));
-        ongService.deleteOng(ongId);
+        deleteEvents((Ong)userService.getUserById(ongId));
+        userService.deleteUser(ongId);
         return "adminongs";
 
     }
@@ -68,8 +68,8 @@ public class AdminController {
         if(checkIsAdmin(session) != null)
             return checkIsAdmin(session);
         //delete in cascade
-        deleteUser2EventsByPerson(personService.getPersonById(personId));
-        personService.deletePerson(personId);
+        deleteUser2EventsByPerson((Person)userService.getUserById(personId));
+        userService.deleteUser(personId);
         return "adminpersons";
     }
 
@@ -115,9 +115,6 @@ public class AdminController {
         if(checkIsAdmin(session) != null)
             return checkIsAdmin(session);
 
-        System.out.println("LISSSSTTAAAA");
-        System.out.println((ArrayList<Ong>)ongService.findOngsToAccept());
-
         model.addAttribute("ongs",(ArrayList<Ong>)ongService.findOngsToAccept());
         return "acceptongs";
     }
@@ -126,9 +123,9 @@ public class AdminController {
         HttpSession session = request.getSession();
         if(checkIsAdmin(session) != null)
             return checkIsAdmin(session);
-        Ong ong = ongService.getOngById(ongId);
+        Ong ong = (Ong)userService.getUserById(ongId);
         ong.setApproved(true);
-        ongService.saveOng(ong);
+        userService.saveUser(ong);
         model.addAttribute("ongs",(ArrayList<Ong>)ongService.findOngsToAccept());
         return "acceptongs";
     }

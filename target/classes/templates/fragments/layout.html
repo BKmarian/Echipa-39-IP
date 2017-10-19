@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="layout">
+    <link rel="stylesheet" type="text/css" th:href="@{'~/css/3rdParty/bootstrap.min.css' }"/>
+    <link rel="stylesheet" type="text/css" th:href="@{'~/css/Layout.css' }"/>
+
+    <div class="site">
+
+        <a href="#" class="logo"><img th:src="@{'~/images/logo.png'}"  alt="setalpm" width="600" height="100" /></a>
+
+        <div id="loginimg">
+            <img ID="Imagelogin" th:src="@{'~/images/login.png'}"  Height="75px"  Width="75px" />
+            <div id="loginhover">
+                <div class="block">
+                    <div class="news">
+                        <div id="padd">
+
+                            <form name="f" th:action="@{/login}" method="post" id="login">
+                                <input type="text" id="username" class="form-control input-sm chat-input" placeholder="Utilizator"  name="username"/>
+                                <input type="password" id="password" class="form-control input-sm chat-input" placeholder="Parola" name="password"/>
+                                <div class="form-actions butoaneLogare">
+                                    <button type="submit" id="autentificare" class="btnLogare btnHover">Autentificare</button>
+                                    <button class="btnLogare btnHover"><a th:href = "@{/forgotpassword}">Parola Uitata</a></button>
+                                </div>
+                                <div class="butoaneLogare" id="creazaConturi">
+                                    <button class="btnLogare btnHover" id="creazaCont"><a th:href = "@{/createperson}">Cont Nou</a></button>
+                                    <button class="btnLogare btnHover"><a th:href = "@{/createong}">Cont Nou Ong</a></button>
+                                </div>
+                            </form>
+                            <div id="check" style="color:red">
+                                <div th:if="${param.error}" class="alert alert-error">
+                                    Invalid username and password.
+                                </div>
+                                <div th:if="${param.logout}" class="alert alert-success">
+                                    You have been logged out.
+                                </div>
+                            </div>
+
+                            <!-- <div id="loged">
+                                <div id="login_schimba">Schimba Poza</div>
+                                <div ValidationGroup='logout' ID="login_logout" Text="Delogare"></div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/layout.js"></script>
+</div>
+
+<div th:fragment="footer">
+<footer id="footer">
+    <div>
+        <span>Copyright &copy;. Rights reserved.</span>
+        <span style="float:right"> This page is created by Team-39</span>
+    </div>
+</footer>
+</div>
+
+</body>
+</html>

@@ -41,13 +41,16 @@ public class OngController {
     @Autowired
     private StorageService storageService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("ong/profile")
     public String profile(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         if (checkIsOng(session) != null)
             return checkIsOng(session);
         Integer ongId = Integer.parseInt(session.getAttribute("ongid").toString());
-        model.addAttribute("ong", ongService.getOngById(ongId));
+        model.addAttribute("ong", userService.getUserById(ongId));
         return "ongprofile";
     }
 
@@ -70,10 +73,10 @@ public class OngController {
             return checkIsOng(session);
         if(ong.getPassword() == null) {
             int ongid = Integer.parseInt(session.getAttribute("ongid").toString());
-            Ong ong2 = ongService.getOngById(ongid);
+            Ong ong2 = (Ong)userService.getUserById(ongid);
             ong.setPassword(ong2.getPassword());
         }
-        ongService.saveOng(ong);
+        userService.saveUser(ong);
         return "redirect:/ong/" + ong.getId();
     }
     @RequestMapping("event/delete/{eventid}")
@@ -102,7 +105,7 @@ public class OngController {
         HttpSession session = request.getSession();
         if (checkIsOng(session) != null)
             return checkIsOng(session);
-        Ong ong = ongService.getOngById(Integer.parseInt(session.getAttribute("ongid").toString()));
+        Ong ong = (Ong)userService.getUserById(Integer.parseInt(session.getAttribute("ongid").toString()));
         Integer ongId = Integer.parseInt(request.getSession().getAttribute("ongid").toString());
         System.out.println("ongId=" + ongId);
         Event event = new Event();
@@ -220,7 +223,7 @@ public class OngController {
         if (checkIsOng(session) != null)
             return checkIsOng(session);
         Integer ongId = Integer.parseInt(request.getSession().getAttribute("ongid").toString());
-        ArrayList<Event> events = (ArrayList<Event>)eventService.getEventsByOng(ongService.getOngById(ongId));
+        ArrayList<Event> events = (ArrayList<Event>)eventService.getEventsByOng((Ong)userService.getUserById(ongId));
         model.addAttribute("events",eventService.sortEventsByDate(events));
         return "ongevents";
     }

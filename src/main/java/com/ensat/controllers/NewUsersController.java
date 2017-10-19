@@ -2,8 +2,10 @@ package com.ensat.controllers;
 
 import com.ensat.entities.Ong;
 import com.ensat.entities.Person;
+import com.ensat.entities.User;
 import com.ensat.services.OngService;
 import com.ensat.services.PersonService;
+import com.ensat.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,9 @@ public class NewUsersController {
 
     @Autowired
     OngService ongService;
+
+    @Autowired
+    UserService userService;
 
     @RequestMapping(value = "/createperson")
     public String returnView() {
@@ -49,7 +54,7 @@ public class NewUsersController {
             person.setJob(job);
             person.setPhone(phone);
             person.setUsername(username);
-            personService.savePerson(person);
+            userService.saveUser(person);
             model.addAttribute("error","OK");
             return "redirect:/login";
         }
@@ -77,7 +82,7 @@ public class NewUsersController {
             ong.setPhone(phone);
             ong.setUsername(username);
             ong.setApproved(false);
-            ongService.saveOng(ong);
+            userService.saveUser(ong);
             model.addAttribute("error","OK");
             return "redirect:/login";
         }
@@ -87,9 +92,8 @@ public class NewUsersController {
         }
     }
     public boolean checkUsername(String username) {
-        Person person = personService.getPersonByUsername(username);
-        Ong ong = ongService.getOngByUsername(username);
-        if(ong == null && person == null)
+        User user = userService.getUserByUsername(username);
+        if(user == null)
             return false;
         return true;
     }

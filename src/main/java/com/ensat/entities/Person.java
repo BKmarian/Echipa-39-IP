@@ -6,30 +6,23 @@ import javax.persistence.*;
  *
  */
 @Entity
-@Table(name = "Person")
-public class Person {
+@DiscriminatorValue(value = "person")
+public class Person extends User{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
-    private String username;
-    private String password;
     private String email;
 
     @Column(name = "full_name")
     private String fullName;
 
     @Column(name = "isadmin")
-    private boolean isadmin;
+    private Boolean isadmin;
 
     private String phone;
-    private Boolean approved;
     private String picture;
     private Integer age;
     private String job;
 
-    public boolean getIsAdmin() { return isadmin;}
+    public Boolean getIsAdmin() { return isadmin;}
 
     public String getPicture() {
         return picture;
@@ -37,6 +30,19 @@ public class Person {
 
     public String getJob() {
         return job;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "email='" + email + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", isadmin=" + isadmin +
+                ", phone='" + phone + '\'' +
+                ", picture='" + picture + '\'' +
+                ", age=" + age +
+                ", job='" + job + '\'' +
+                '}';
     }
 
     public Integer getAge() {
@@ -60,25 +66,12 @@ public class Person {
 
     }
 
-    public Boolean getApproved() {
-        return approved;
-    }
-
-    public void setApproved(Boolean approved) {
-        this.approved = approved;
-    }
-
     public String getPhone() {
         return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getPassword() {
-
-        return password;
     }
 
     public String getEmail() {
@@ -89,33 +82,8 @@ public class Person {
         this.email = email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-
-    }
-
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
     public String getFullName() {
         return fullName;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String toString() {
-        return " username=" + password + " email" + email;
-    }
 }

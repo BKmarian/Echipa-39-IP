@@ -2,9 +2,11 @@ package com.ensat.controllers;
 
 import com.ensat.entities.Ong;
 import com.ensat.entities.Person;
+import com.ensat.entities.User;
 import com.ensat.services.EventService;
 import com.ensat.services.OngService;
 import com.ensat.services.PersonService;
+import com.ensat.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.SpringVersion;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,9 @@ public class IndexController {
 
     @Autowired
     EventService eventService;
+
+    @Autowired
+    UserService userService;
 
     @RequestMapping("/person/{id}")
     public String personIndex(Model model,HttpServletRequest request, @PathVariable Integer id) {
@@ -89,21 +94,27 @@ public class IndexController {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         System.out.println(username + "   " + password);
-        Person person = personService.getPersonByUsername(username);
-        Ong ong = ongService.getOngByUsername(username);
-        if(person != null) {
-            System.out.println(person.getPassword());
-            if(person.getPassword().equals(password) == true)
-                if(person.getIsAdmin() == false)
-                    return "redirect:/person/" + person.getId();
-                else
-                    return "redirect:/admin";
+        System.out.println(userService.listAllUsers());
+        try {
+            User user = userService.getUserByUsername(username);
+            if (user != null) {
+                System.out.println(user.getPassword());
+                if (user.getPassword().equals(password) == true) {
+                    // if (user.getIsAdmin() == true)
+                    //return "redirect:/admin";
+
+                    if (user instanceof Person)
+                        return "redirect:/person/" + user.getId();
+                    else
+                        return "redirect:/ong/" + user.getId();
+
+                }
+            }
+            return "login";
         }
-
-        if(ong != null)
-            if(ong.getPassword().equals(password) == true && ong.getApproved() == true)
-                return "redirect:/ong/" + ong.getId();
-
-        return "login";
-    }
+        catch(Exception e){
+                e.printStackTrace();
+                return "login";
+            }
+        }
 }

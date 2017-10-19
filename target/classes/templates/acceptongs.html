@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Permisiuni</title>
+
+    <th:block th:include="fragments/headerinc :: head"></th:block>
+    <th:block th:include="fragments/layout :: layout"></th:block>
+</head>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        $('#adminongs').DataTable();
+    } );
+</script>
+<body>
+<div class="site">
+    <div id="menu">
+        <th:block th:include="fragments/adminheader :: header"></th:block>
+    </div>
+
+    <div class="continut">
+        <div class="site">
+    <div th:if="${not #lists.isEmpty(ongs)}">
+        <h2>Aproba conturile de ONG</h2>
+        <table id = "adminongs" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Utilizator</th>
+                <th>Nume Complet</th>
+                <th>Telefon</th>
+                <th>Contact</th>
+                <th>Accepta</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ong : ${ongs}">
+                <td th:text="${ong.id}">Id</td>
+                <td th:text="${ong.username}">Utilizator</td>
+                <td th:text="${ong.fullName}">Nume Complet</td>
+                <td th:text="${ong.phone}">Telefon</td>
+                <td th:text="${ong.contact}">Contact</td>
+                <td><a th:href="${'/admin/acceptong/' + ong.id}">Accepta</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<th:block th:include="fragments/layout :: footer"></th:block>
+</html>

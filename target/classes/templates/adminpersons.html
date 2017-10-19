@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Gabriela Tudor</title>
+
+    <th:block th:include="fragments/headerinc :: head"></th:block>
+    <th:block th:include="fragments/layout :: layout"></th:block>
+</head>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        $('#adminpersons').DataTable();
+    } );
+</script>
+<body>
+<div class="site">
+    <div id="menu">
+        <th:block th:include="fragments/adminheader :: header"></th:block>
+    </div>
+
+    <div class="continut">
+        <div class="site">
+            <th:block th:include="fragments/carousel::carousel"></th:block>
+    <div th:if="${not #lists.isEmpty(persons)}">
+        <h2>Utilizatori</h2>
+        <table id = "adminpersons" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>UserName</th>
+                <th>Email</th>
+                <th>Nume intreg</th>
+                <th>Varsta</th>
+                <th>Job</th>
+                <th>Stergere</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="person : ${persons}">
+                <td th:text="${person.id}">Id</td>
+                <td th:text="${person.username}">Utilizator</td>
+                <td th:text="${person.email}">Email</td>
+                <td th:text="${person.fullName}">Nume</td>
+                <td th:text="${person.age}">Varsta</td>
+                <td th:text="${person.job}">Ocupatie</td>
+                <td><a th:href="${'/admin/deletePerson/' + person.id}">Sterge</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+<th:block th:include="fragments/layout :: footer"></th:block>
+</html>
