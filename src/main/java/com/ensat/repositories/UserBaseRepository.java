@@ -8,12 +8,10 @@ import com.ensat.entities.User;
 import org.springframework.transaction.annotation.Transactional;
 
 @NoRepositoryBean
-@Primary
 public interface UserBaseRepository<T>
         extends CrudRepository<T, Integer> {
 
      T getUserByEmail(String email);
      T getUserByUsername(String username);
      T getUserById(Integer id);
-
 }

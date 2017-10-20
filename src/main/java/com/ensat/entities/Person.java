@@ -9,8 +9,6 @@ import javax.persistence.*;
 @DiscriminatorValue(value = "person")
 public class Person extends User{
 
-    private String email;
-
     @Column(name = "full_name")
     private String fullName;
 
@@ -35,7 +33,6 @@ public class Person extends User{
     @Override
     public String toString() {
         return "Person{" +
-                "email='" + email + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", isadmin=" + isadmin +
                 ", phone='" + phone + '\'' +
@@ -72,14 +69,6 @@ public class Person extends User{
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getFullName() {

@@ -14,9 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface OngRepository extends UserBaseRepository<Ong> {
 
-    @Query("select o from Ong o where o.approved = 0")
+    @Query("select o from Ong as o where o.approved = 0")
     Iterable<Ong> findOngsToAccept();
 
-    @Query("select o from Ong o where o.approved = 1")
+    @Query("select o from Ong as o where o.approved = 1")
     Iterable<Ong> findOngsAccepted();
 }
