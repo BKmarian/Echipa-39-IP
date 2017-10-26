@@ -12,15 +12,12 @@ public class Person extends User{
     @Column(name = "full_name")
     private String fullName;
 
-    @Column(name = "isadmin")
-    private Boolean isadmin;
 
     private String phone;
     private String picture;
     private Integer age;
     private String job;
 
-    public Boolean getIsAdmin() { return isadmin;}
 
     public String getPicture() {
         return picture;
@@ -34,7 +31,6 @@ public class Person extends User{
     public String toString() {
         return "Person{" +
                 ", fullName='" + fullName + '\'' +
-                ", isadmin=" + isadmin +
                 ", phone='" + phone + '\'' +
                 ", picture='" + picture + '\'' +
                 ", age=" + age +

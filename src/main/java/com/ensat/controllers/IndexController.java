@@ -42,7 +42,6 @@ public class IndexController {
         model.addAttribute("userid",id);
         return "personindex";
     }
-
     @RequestMapping("/ong/{id}")
     public String ongIndex(Model model,HttpServletRequest request, @PathVariable Integer id) {
         HttpSession session = request.getSession();
@@ -96,14 +95,12 @@ public class IndexController {
         System.out.println(username + "   " + password);
         System.out.println(userService.listAllUsers());
         try {
-            if (username.equals("admin") && password.equals("admin"))
-                return "redirect:/admin";
             User user = userService.getUserByUsername(username);
             if (user != null) {
                 System.out.println(user.getPassword());
                 if (user.getPassword().equals(password) == true) {
-                    // if (user.getIsAdmin() == true)
-                    //return "redirect:/admin";
+                     if (user.getIsadmin() == true)
+                        return "redirect:/admin";
 
                     if (user instanceof Person)
                         return "redirect:/person/" + user.getId();

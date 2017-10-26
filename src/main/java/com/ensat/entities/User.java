@@ -22,6 +22,8 @@ public abstract class User {
     @NotNull
     private String email;
 
+    private Boolean isadmin;
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -53,6 +55,10 @@ public abstract class User {
     public String getEmail() {
         return email;
     }
+
+    public Boolean getIsadmin() {return isadmin;}
+
+    public void setIsadmin(Boolean isadmin) {this.isadmin = isadmin; }
 
     @Override
     public String toString() {
