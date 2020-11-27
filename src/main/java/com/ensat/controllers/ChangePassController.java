@@ -19,71 +19,70 @@ import javax.servlet.http.HttpSession;
 public class ChangePassController {
 
     @Autowired
-    PersonService personService;
+    private PersonService personService;
 
     @Autowired
-    OngService ongService;
+    private OngService ongService;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     final String fromEmail = "cosminmanolescudans@gmail.com";
 
     @RequestMapping("/person/changepwd")
     public String change1(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if(session.getAttribute("userid") == null)
+        if (session.getAttribute("userid") == null)
             return "redirect:/login";
         return "personchangepass";
     }
+
     @RequestMapping("/ong/changepwd")
     public String change2(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if(session.getAttribute("ongid") == null)
+        if (session.getAttribute("ongid") == null)
             return "redirect:/login";
         return "ongchangepass";
     }
+
     @RequestMapping(value = "/person/changepassword", method = RequestMethod.POST)
     public String personchangepasword(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if(session.getAttribute("userid") == null)
+        if (session.getAttribute("userid") == null)
             return "redirect:/login";
-        Person person = (Person)userService.getUserById(Integer.parseInt(session.getAttribute("userid").toString()));
+        Person person = (Person) userService.getUserById(Integer.parseInt(session.getAttribute("userid").toString()));
         String password = request.getParameter("password");
         String verifypassword = request.getParameter("verifypassword");
         String newpassword = request.getParameter("newpassword");
-        if(password.equals(verifypassword) == false)
-            return "redirect:/person/" + person.getId();
-        else {
+        if (password.equals(verifypassword)) {
             person.setPassword(newpassword);
             userService.saveUser(person);
-            return "redirect:/person/" + person.getId();
         }
+        return "redirect:/person/" + person.getId();
     }
 
     @RequestMapping(value = "/ong/changepassword", method = RequestMethod.POST)
     public String ongchangepassword(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if(session.getAttribute("ongid") == null)
+        if (session.getAttribute("ongid") == null)
             return "redirect:/login";
         Ong ong = (Ong) userService.getUserById(Integer.parseInt(session.getAttribute("ongid").toString()));
         String password = request.getParameter("password");
         String verifypassword = request.getParameter("verifypassword");
         String newpassword = request.getParameter("newpassword");
-        if(password.equals(verifypassword) == false)
-            return "redirect:/ong/" + ong.getId();
-        else {
+        if (password.equals(verifypassword)) {
             ong.setPassword(newpassword);
             userService.saveUser(ong);
-            return "redirect:/ong/" + ong.getId();
         }
+        return "redirect:/ong/" + ong.getId();
     }
-    @RequestMapping(value = "/forgotpassword",method = RequestMethod.GET)
+
+    @RequestMapping(value = "/forgotpassword", method = RequestMethod.GET)
     public String forgotPassword() {
         return "forgotpassword";
     }
 
-    @RequestMapping(value = "/forgotpassword",method = RequestMethod.POST)
+    @RequestMapping(value = "/forgotpassword", method = RequestMethod.POST)
     public String sendEmail(HttpServletRequest request) throws MessagingException {
         try {
             String email = request.getParameter("email");
@@ -97,8 +96,7 @@ public class ChangePassController {
 
             return "redirect:/login";
 
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             return "redirect:/login";
         }
     }

@@ -1,6 +1,5 @@
 package com.ensat.controllers;
 
-import com.ensat.entities.Ong;
 import com.ensat.entities.Person;
 import com.ensat.entities.User;
 import com.ensat.services.EventService;
@@ -17,65 +16,65 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class IndexController {
 
     @Autowired
-    PersonService personService;
+    private PersonService personService;
 
     @Autowired
-    OngService ongService;
+    private OngService ongService;
 
     @Autowired
-    EventService eventService;
+    private EventService eventService;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @RequestMapping("/person/{id}")
-    public String personIndex(Model model,HttpServletRequest request, @PathVariable Integer id) {
+    public String personIndex(Model model, HttpServletRequest request, @PathVariable Integer id) {
         System.out.println("version: " + SpringVersion.getVersion());
         HttpSession session = request.getSession();
-        session.setAttribute("userid",id);
-        model.addAttribute("userid",id);
+        session.setAttribute("userid", id);
+        model.addAttribute("userid", id);
         return "personindex";
     }
+
     @RequestMapping("/ong/{id}")
-    public String ongIndex(Model model,HttpServletRequest request, @PathVariable Integer id) {
+    public String ongIndex(Model model, HttpServletRequest request, @PathVariable Integer id) {
         HttpSession session = request.getSession();
-        session.setAttribute("ongid",id);
-        model.addAttribute("ongid",id);
+        session.setAttribute("ongid", id);
+        model.addAttribute("ongid", id);
         return "ongindex";
     }
 
     @RequestMapping("/allevents")
     public String guestevents(Model model) {
-        model.addAttribute("events",eventService.listAllEvents());
+        model.addAttribute("events", eventService.listAllEvents());
         return "guestevents";
     }
 
     @RequestMapping("/showevent/{id}")
     public String showevent(Model model, @PathVariable Integer id) {
-        model.addAttribute("event",eventService.getEventById(id));
+        model.addAttribute("event", eventService.getEventById(id));
         return "eventshow";
     }
 
-    @RequestMapping(value = {"/login","/"}, method = RequestMethod.GET)
-    public String loginpage(Model model,HttpServletRequest request) {
+    @RequestMapping(value = {"/login", "/"}, method = RequestMethod.GET)
+    public String loginpage(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
 
         System.out.println(eventService.findsLastFIVEvents());
-        ArrayList<Integer> lista = eventService.findsLastFIVEvents();
+        List<Integer> lista = eventService.findsLastFIVEvents();
         try {
             session.setAttribute("a", lista.get(0));
             session.setAttribute("b", lista.get(1));
             session.setAttribute("c", lista.get(2));
             session.setAttribute("d", lista.get(3));
             session.setAttribute("e", lista.get(4));
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             return "login";
         }
         return "login";
@@ -89,7 +88,7 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(Model model,HttpServletRequest request) {
+    public String login(Model model, HttpServletRequest request) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         System.out.println(username + "   " + password);
@@ -98,10 +97,9 @@ public class IndexController {
             User user = userService.getUserByUsername(username);
             if (user != null) {
                 System.out.println(user.getPassword());
-                if (user.getPassword().equals(password) == true) {
-                     if (user.getIsadmin() == true)
+                if (user.getPassword().equals(password)) {
+                    if (user.getIsadmin())
                         return "redirect:/admin";
-
                     if (user instanceof Person)
                         return "redirect:/person/" + user.getId();
                     else
@@ -110,10 +108,9 @@ public class IndexController {
                 }
             }
             return "login";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "login";
         }
-        catch(Exception e){
-                e.printStackTrace();
-                return "login";
-            }
-        }
+    }
 }

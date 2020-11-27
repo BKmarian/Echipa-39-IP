@@ -1,7 +1,8 @@
 package com.ensat.entities;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "user")
@@ -11,18 +12,18 @@ public abstract class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    protected Integer id;
 
     @NotNull
-    private String username;
+    protected String username;
 
     @NotNull
-    private String password;
+    protected String password;
 
     @NotNull
-    private String email;
+    protected String email;
 
-    private Boolean isadmin;
+    protected Boolean isadmin;
 
     public void setId(Integer id) {
         this.id = id;
@@ -56,9 +57,13 @@ public abstract class User {
         return email;
     }
 
-    public Boolean getIsadmin() {return isadmin;}
+    public Boolean getIsadmin() {
+        return isadmin;
+    }
 
-    public void setIsadmin(Boolean isadmin) {this.isadmin = isadmin; }
+    public void setIsadmin(Boolean isadmin) {
+        this.isadmin = isadmin;
+    }
 
     @Override
     public String toString() {

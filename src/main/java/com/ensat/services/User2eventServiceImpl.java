@@ -7,8 +7,10 @@ import com.ensat.repositories.User2eventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * User2event service implement.
@@ -25,11 +27,8 @@ public class User2eventServiceImpl implements User2eventService {
 
     @Override
     public List<Event> getEventsbyPerson(Person person) {
-        ArrayList<User2event> list = (ArrayList<User2event>) (user2eventRepository.getEventsByPerson(person));
-        ArrayList<Event> eventList = new ArrayList<Event>();
-        for (User2event user2event : list)
-            eventList.add(user2event.getEvent());
-        return eventList;
+        List<User2event> list = user2eventRepository.getEventsByPerson(person);
+        return list.stream().map(User2event::getEvent).filter(Objects::nonNull).collect(Collectors.toList());
     }
 
     @Override
@@ -38,8 +37,8 @@ public class User2eventServiceImpl implements User2eventService {
     }
 
     @Override
-    public User2event getUser2eventById(Integer id) {
-        return user2eventRepository.findOne(id);
+    public Optional<User2event> getUser2eventById(Integer id) {
+        return user2eventRepository.findById(id);
     }
 
     @Override
@@ -49,7 +48,7 @@ public class User2eventServiceImpl implements User2eventService {
 
     @Override
     public void deleteUser2event(Integer id) {
-        user2eventRepository.delete(id);
+        user2eventRepository.deleteById(id);
     }
 
 }

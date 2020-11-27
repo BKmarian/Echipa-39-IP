@@ -13,19 +13,19 @@ import java.util.Properties;
 @Configurable
 public class SmtpMailSender {
 
-    final static String username = "cosminmanolescudans@gmail.com";
+    final static String USERNAME = "cosminmanolescudans@gmail.com";
 
-    final static String password = "gabtudor";
+    final static String PASSWORD = "gabtudor";
 
     @Bean
-    public JavaMailSenderImpl javaMailSenderImpl(){
+    public JavaMailSenderImpl javaMailSenderImpl() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
         //Set gmail email id
-        mailSender.setUsername(username);
+        mailSender.setUsername(USERNAME);
         //Set gmail email password
-        mailSender.setPassword(password);
+        mailSender.setPassword(PASSWORD);
         Properties prop = mailSender.getJavaMailProperties();
         prop.put("mail.transport.protocol", "smtp");
         prop.put("mail.smtp.auth", "true");
@@ -33,14 +33,15 @@ public class SmtpMailSender {
         prop.put("mail.debug", "true");
         return mailSender;
     }
-    public static void sendMail(String email,String subject,String text) throws MessagingException {
+
+    public static void sendMail(String email, String subject, String text) throws MessagingException {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
         ctx.register(SmtpMailSender.class);
         ctx.refresh();
         JavaMailSenderImpl mailSender = ctx.getBean(JavaMailSenderImpl.class);
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper mailMsg = new MimeMessageHelper(mimeMessage);
-        mailMsg.setFrom(username);
+        mailMsg.setFrom(USERNAME);
         mailMsg.setTo(email);
         mailMsg.setSubject(subject);
         mailMsg.setText(text);

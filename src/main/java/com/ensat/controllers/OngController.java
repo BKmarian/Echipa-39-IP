@@ -44,6 +44,8 @@ public class OngController {
     @Autowired
     private UserService userService;
 
+    public static final DateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+
     @RequestMapping("ong/profile")
     public String profile(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
@@ -58,7 +60,7 @@ public class OngController {
      * New event.
      */
     @RequestMapping("ong/createevent")
-    public String newEvent(HttpServletRequest request,Model model) {
+    public String newEvent(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         if (checkIsOng(session) != null)
             return checkIsOng(session);
@@ -71,16 +73,17 @@ public class OngController {
         HttpSession session = request.getSession();
         if (checkIsOng(session) != null)
             return checkIsOng(session);
-        if(ong.getPassword() == null) {
+        if (ong.getPassword() == null) {
             int ongid = Integer.parseInt(session.getAttribute("ongid").toString());
-            Ong ong2 = (Ong)userService.getUserById(ongid);
+            Ong ong2 = (Ong) userService.getUserById(ongid);
             ong.setPassword(ong2.getPassword());
         }
         userService.saveUser(ong);
         return "redirect:/ong/" + ong.getId();
     }
+
     @RequestMapping("event/delete/{eventid}")
-    public String deleteEvent(@PathVariable Integer eventid, HttpServletRequest request,Model model) {
+    public String deleteEvent(@PathVariable Integer eventid, HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         if (checkIsOng(session) != null)
             return checkIsOng(session);
@@ -88,9 +91,10 @@ public class OngController {
         eventService.deleteEvent(eventid);
         return "redirect:/ong/myEvents";
     }
+
     public void deleteUser2Event(Integer eventId) {
-        for(User2event u : user2eventService.listAllUser2events()) {
-            if(u.getEvent().getId() .equals(eventId))
+        for (User2event u : user2eventService.listAllUser2events()) {
+            if (u.getEvent().getId().equals(eventId))
                 user2eventService.deleteUser2event(u.getId());
         }
     }
@@ -100,28 +104,26 @@ public class OngController {
      * Save event to database.
      */
     @RequestMapping(value = "ong/event", method = RequestMethod.POST)
-    public String saveEvent(@RequestParam("file") MultipartFile file, HttpServletRequest request,Model model) throws ParseException {
+    public String saveEvent(@RequestParam("file") MultipartFile file, HttpServletRequest request, Model model) throws ParseException {
 
         HttpSession session = request.getSession();
         if (checkIsOng(session) != null)
             return checkIsOng(session);
-        Ong ong = (Ong)userService.getUserById(Integer.parseInt(session.getAttribute("ongid").toString()));
+        Ong ong = (Ong) userService.getUserById(Integer.parseInt(session.getAttribute("ongid").toString()));
         Integer ongId = Integer.parseInt(request.getSession().getAttribute("ongid").toString());
         System.out.println("ongId=" + ongId);
         Event event = new Event();
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         String location = request.getParameter("location");
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String date = request.getParameter("date");
 
-        if(date == null || date.equals(""))
-        {
-            model.addAttribute("error","Date cannot be null");
+        if (date == null || date.equals("")) {
+            model.addAttribute("error", "Date cannot be null");
             return "eventform";
         }
 
-        Date data = format.parse(date);
+        Date data = FORMAT.parse(date);
         event.setDate(data);
 
         event.setDescription(description);
@@ -132,8 +134,7 @@ public class OngController {
         //Save image
         try {
             storageService.store(file, "event" + event.getId());
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             return "redirect:/ong/event/" + event.getId();
         }
         return "redirect:/ong/event/" + event.getId();
@@ -149,88 +150,83 @@ public class OngController {
     }
 
     @RequestMapping("ong/event/{eventid}")
-    public String event2(@PathVariable Integer eventid,HttpServletRequest request, Model model) throws ParseException {
+    public String event2(@PathVariable Integer eventid, HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         if (checkIsOng(session) != null)
             return checkIsOng(session);
-        System.out.println(eventService.getEventById(eventid).getDate());
         model.addAttribute("event", eventService.getEventById(eventid));
         //model.addAttribute("ongid",ongid);
         return "showeventong";
     }
 
     @RequestMapping("event/edit/{id}")
-    public String edit(@PathVariable Integer id,HttpServletRequest request,Model model) {
+    public String edit(@PathVariable Integer id, HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         if (checkIsOng(session) != null)
             return checkIsOng(session);
 
-        session.setAttribute("eventid",id);
+        session.setAttribute("eventid", id);
 
-        model.addAttribute("event",eventService.getEventById(id));
+        model.addAttribute("event", eventService.getEventById(id));
         return "eventupdate";
     }
 
-    private static final SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-
     @RequestMapping("/ong/event/update")
-    public String update(@RequestParam("file") MultipartFile file,HttpServletRequest request,Model model) throws ParseException {
+    public String update(@RequestParam("file") MultipartFile file, HttpServletRequest request, Model model) throws ParseException {
         HttpSession session = request.getSession();
         Integer id = Integer.parseInt(request.getParameter("id"));
         if (checkIsOng(session) != null)
             return checkIsOng(session);
-        Event event = eventService.getEventById(id);
+        Event event = eventService.getEventById(id).get();
         event.setName(request.getParameter("name"));
         event.setDescription(request.getParameter("description"));
         event.setLocation(request.getParameter("location"));
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String date = request.getParameter("date");
 
-        if(date == null || date.equals(""))
-        {
-            model.addAttribute("error","Date cannot be null");
+        if (date == null || date.equals("")) {
+            model.addAttribute("error", "Date cannot be null");
             return "eventform";
         }
 
-        Date data = format.parse(date);
+        Date data = FORMAT.parse(date);
         event.setDate(data);
         eventService.saveEvent(event);
-        model.addAttribute("event",event);
+        model.addAttribute("event", event);
         try {
-            deletee("src/main/resources/static/images/event" + event.getId());
+            deleteImage("src/main/resources/static/images/event" + event.getId());
             storageService.store(file, "event" + event.getId());
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             return "redirect:/ong/event/" + event.getId();
         }
         return "showeventong";
     }
 
-    public void deletee(String file) {
-            File filee = new File(file);
+    public void deleteImage(String file) {
+        File filee = new File(file);
         System.out.println("Working Directory = " +
                 System.getProperty("user.dir"));
-            if(filee.delete()){
-                System.out.println(filee.getName() + " is deleted!");
-            }else{
-                System.out.println("Delete operation is failed.");
-            }
+        if (filee.delete()) {
+            System.out.println(filee.getName() + " is deleted!");
+        } else {
+            System.out.println("Delete operation is failed.");
+        }
 
     }
+
     @RequestMapping("ong/myEvents")
-    public String getEvents(HttpServletRequest request,Model model) {
+    public String getEvents(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         if (checkIsOng(session) != null)
             return checkIsOng(session);
         Integer ongId = Integer.parseInt(request.getSession().getAttribute("ongid").toString());
-        ArrayList<Event> events = (ArrayList<Event>)eventService.getEventsByOng((Ong)userService.getUserById(ongId));
-        model.addAttribute("events",eventService.sortEventsByDate(events));
+        ArrayList<Event> events = (ArrayList<Event>) eventService.getEventsByOng((Ong) userService.getUserById(ongId));
+        model.addAttribute("events", eventService.sortEventsByDate(events));
         return "ongevents";
     }
 
     public String checkIsOng(HttpSession session) {
 
-        if(session.getAttribute("ongid") == null)
+        if (session.getAttribute("ongid") == null)
             return "redirect:/login";
         return null;
     }

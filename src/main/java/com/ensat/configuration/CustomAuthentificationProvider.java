@@ -12,11 +12,11 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 @Component
-class CustomAuthenticationProvider
+class CustomAuthentificationProvider
         implements AuthenticationProvider {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Override
     public Authentication authenticate(Authentication authentication)
@@ -25,10 +25,8 @@ class CustomAuthenticationProvider
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        if (shouldAuthenticateAgainstThirdPartySystem(name , password) == true) {
+        if (shouldAuthenticateAgainstThirdPartySystem(name, password)) {
 
-            // use the credentials
-            // and authenticate against the third-party system
             return new UsernamePasswordAuthenticationToken(
                     name, password, new ArrayList<>());
         } else {
@@ -37,14 +35,12 @@ class CustomAuthenticationProvider
     }
     public boolean shouldAuthenticateAgainstThirdPartySystem(String username,String password) {
 
-        if(username.equals("admin") && password.equals("admin"))
+        if("admin".equals(username) && "admin".equals(password))
             return true;
 
         User user = userService.getUserByUsername(username);
 
-        if(user.getPassword().equals(password))
-            return true;
-        else return false;
+        return user.getPassword().equals(password);
 
     }
     @Override

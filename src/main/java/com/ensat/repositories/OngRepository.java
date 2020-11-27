@@ -5,10 +5,7 @@ package com.ensat.repositories;
  */
 
 import com.ensat.entities.Ong;
-import com.ensat.entities.Person;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional

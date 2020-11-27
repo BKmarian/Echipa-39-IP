@@ -1,11 +1,7 @@
 package com.ensat.services;
 
-import com.ensat.entities.Event;
-import com.ensat.entities.Person;
 import com.ensat.entities.User;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public interface UserService {

@@ -3,7 +3,6 @@ package com.ensat.entities;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -28,7 +27,7 @@ public class Event {
     private Boolean approved;
     private static final SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
-    public Date getDate() throws ParseException {
+    public Date getDate() {
         return date;
     }
 
@@ -90,8 +89,7 @@ public class Event {
 
     public String displayFormattedDate() {
         Date unformattedDate = this.date;
-        String stringDateUnformatted = dateFormatter.format(unformattedDate);
-        return stringDateUnformatted;
+        return dateFormatter.format(unformattedDate);
     }
 
     @Override

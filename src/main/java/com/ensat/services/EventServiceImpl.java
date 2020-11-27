@@ -6,11 +6,8 @@ import com.ensat.repositories.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Event service implement.
@@ -31,8 +28,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event getEventById(Integer id) {
-        return eventRepository.findOne(id);
+    public Optional<Event> getEventById(Integer id) {
+        return eventRepository.findById(id);
     }
 
     @Override
@@ -42,44 +39,24 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public void deleteEvent(Integer id) {
-        eventRepository.delete(id);
+        eventRepository.deleteById(id);
     }
 
     @Override
     public List<Event> getEventsByOng(Ong ong) {
-        return (List<Event>)eventRepository.getEventsByOng(ong);
+        return eventRepository.getEventsByOng(ong);
     }
 
     @Override
     public List<Event> sortEventsByDate(ArrayList<Event> lista) {
-        Collections.sort(lista, new Comparator<Event>() {
-            @Override
-            public int compare(Event a1, Event a2) {
-                try {
-                    if(a1.getDate().compareTo(a2.getDate()) > 0)
-                        return -1;
-                    else
-                        return 1;
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                    return 1;
-                }
-            }
-        });
+        Collections.sort(lista, Comparator.comparing(Event::getDate));
         return lista;
     }
 
     @Override
-    public ArrayList<Integer> findsLastFIVEvents() {
-        ArrayList<Event> lista = (ArrayList<Event>)(eventRepository.findsLastFIVEvents());
-        ArrayList<Integer> lista2 = new ArrayList<Integer>();
-        int lungime;
-        if(lista.size() < 5)
-            lungime = lista.size();
-        else
-            lungime = 5;
-        for(int i = 0 ; i < lungime ; i++)
-            lista2.add(lista.get(i).getId());
-        return lista2;
+    public List<Integer> findsLastFIVEvents() {
+        List<Event> lista = (ArrayList<Event>)(eventRepository.findsLastFIVEvents());
+        int lungime = Math.min(lista.size(), 5);
+        return lista.subList(0,lungime).stream().map(Event::getId).collect(Collectors.toList());
     }
 }

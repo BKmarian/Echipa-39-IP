@@ -56,12 +56,13 @@ public class PersonController {
         if (checkIsPerson(session) != null)
             return checkIsPerson(session);
         Integer userid = Integer.parseInt(session.getAttribute("userid").toString());
-        model.addAttribute("events", eventService.sortEventsByDate((ArrayList<Event>)user2eventService.getEventsbyPerson((Person)userService.getUserById(userid))));
-        model.addAttribute("userid",userid);
+        model.addAttribute("events", eventService.sortEventsByDate((ArrayList<Event>) user2eventService.getEventsbyPerson((Person) userService.getUserById(userid))));
+        model.addAttribute("userid", userid);
         return "personevents";
     }
+
     @RequestMapping("person/event/{eventid}")
-    public String event(@PathVariable Integer eventid,HttpServletRequest request, Model model) {
+    public String event(@PathVariable Integer eventid, HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         if (checkIsPerson(session) != null)
             return checkIsPerson(session);
@@ -72,42 +73,44 @@ public class PersonController {
     }
 
     @RequestMapping("person/event/delete/{eventid}")
-    public String deleteuser2event(@PathVariable Integer eventid,HttpServletRequest request, Model model) {
+    public String deleteuser2event(@PathVariable Integer eventid, HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         if (checkIsPerson(session) != null)
             return checkIsPerson(session);
         //Integer userid = Integer.parseInt(session.getAttribute("userid").toString());
         int userid = Integer.parseInt(session.getAttribute("userid").toString());
-        deleteuser2event(eventid,userid);
+        deleteuser2event(eventid, userid);
         //model.addAttribute("userid",userid);
         return "redirect:/person/myevents";
     }
 
-    public void deleteuser2event(int eventid,int userid) {
-        for(User2event u : user2eventService.listAllUser2events()) {
-            if(u.getEvent().getId() == eventid && u.getPerson().getId() == userid)
+    public void deleteuser2event(int eventid, int userid) {
+        for (User2event u : user2eventService.listAllUser2events()) {
+            if (u.getEvent().getId() == eventid && u.getPerson().getId() == userid)
                 user2eventService.deleteUser2event(u.getId());
         }
     }
+
     @RequestMapping("person/allevents")
     public String allevents(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         if (checkIsPerson(session) != null)
             return checkIsPerson(session);
         Integer userid = Integer.parseInt(session.getAttribute("userid").toString());
-        model.addAttribute("events", eventService.sortEventsByDate((ArrayList<Event>)personService.getEventsNotJoined(userid)));
-        model.addAttribute("userid",userid);
+        model.addAttribute("events", eventService.sortEventsByDate((ArrayList<Event>) personService.getEventsNotJoined(userid)));
+        model.addAttribute("userid", userid);
         return "allevents";
     }
+
     @RequestMapping("person/joinevent/{eventid}")
     public String addEvent(HttpServletRequest request, @PathVariable Integer eventid, Model model) {
         HttpSession session = request.getSession();
         if (checkIsPerson(session) != null)
             return checkIsPerson(session);
         Integer userid = Integer.parseInt(session.getAttribute("userid").toString());
-        Person person = (Person)userService.getUserById(userid);
-        Event event = eventService.getEventById(eventid);
-        user2eventService.saveUser2event(new User2event(person,event));
+        Person person = (Person) userService.getUserById(userid);
+        Event event = eventService.getEventById(eventid).get();
+        user2eventService.saveUser2event(new User2event(person, event));
         return "redirect:/person/allevents";
     }
 
@@ -115,13 +118,13 @@ public class PersonController {
      * Save person to database.
      */
     @RequestMapping(value = "person", method = RequestMethod.POST)
-    public String savePerson(Person person,HttpServletRequest request) {
+    public String savePerson(Person person, HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (checkIsPerson(session) != null)
             return checkIsPerson(session);
-        if(person.getPassword() == null) {
+        if (person.getPassword() == null) {
             int userId = Integer.parseInt(session.getAttribute("userid").toString());
-            Person p = (Person)userService.getUserById(userId);
+            Person p = (Person) userService.getUserById(userId);
             person.setPassword(p.getPassword());
         }
         System.out.println(person);
@@ -131,7 +134,7 @@ public class PersonController {
 
     public String checkIsPerson(HttpSession session) {
 
-        if(session.getAttribute("userid") == null)
+        if (session.getAttribute("userid") == null)
             return "redirect:/login";
         return null;
     }

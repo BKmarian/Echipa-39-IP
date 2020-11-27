@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * Person service implement.
@@ -33,7 +35,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Iterable<Person> listAllPersons() {
-        return personRepository.findAll();
+        return  StreamSupport.stream(personRepository.findAll().spliterator(), false).filter(p -> !p.getIsadmin()).collect(Collectors.toList());
     }
 
     /**
@@ -41,15 +43,9 @@ public class PersonServiceImpl implements PersonService {
      */
     @Override
     public List<Event> getEventsNotJoined(Integer userid) {
-        List<Event> eventsByPers = (ArrayList<Event>)user2eventService.getEventsbyPerson((Person)userService.getUserById(userid));
+        List<Event> eventsByPers = user2eventService.getEventsbyPerson((Person)userService.getUserById(userid));
         List<Event> allEvents = (ArrayList<Event>)eventService.listAllEvents();
-        List<Event> returnList = new ArrayList<Event>();
-        for(Event event : allEvents) {
-            if(eventsByPers.contains(event) == false)
-                returnList.add(event);
-        }
-        System.out.println(returnList.toString());
-        return returnList;
+        return allEvents.stream().filter(event -> !eventsByPers.contains(event)).collect(Collectors.toList());
     }
 
 }

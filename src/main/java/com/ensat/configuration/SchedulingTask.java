@@ -13,7 +13,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.mail.MessagingException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,13 +21,13 @@ import java.util.Date;
 public class SchedulingTask {
 
     @Autowired
-    EventService eventService;
+    private EventService eventService;
 
     @Autowired
-    PersonService personService;
+    private PersonService personService;
 
     @Autowired
-    User2eventService user2eventService;
+    private User2eventService user2eventService;
 
     private static final Logger log = LoggerFactory.getLogger(SchedulingTask.class);
 
@@ -39,7 +38,7 @@ public class SchedulingTask {
     //SCHEDULED ONCE EVERY DAY
     //Notify users with their given events
     @Scheduled(fixedRate = 1000 * 60 * 60 * 24)
-    public void reportCurrentTime() throws MessagingException, ParseException {
+    public void reportCurrentTime() throws MessagingException {
         ArrayList<Person> personList = (ArrayList<Person>) personService.listAllPersons();
         for (Person person : personList) {
             ArrayList<Event> events = (ArrayList<Event>) user2eventService.getEventsbyPerson(person);
