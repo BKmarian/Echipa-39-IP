@@ -1,10 +1,7 @@
 package ProgramareWebJava.controller;
 
 import ProgramareWebJava.SpringBootWebApplication;
-import ProgramareWebJava.controllers.IndexController;
-import ProgramareWebJava.controllers.NewUsersController;
-import ProgramareWebJava.controllers.OngController;
-import ProgramareWebJava.controllers.PersonController;
+import ProgramareWebJava.controllers.*;
 import ProgramareWebJava.entities.Event;
 import ProgramareWebJava.entities.Ong;
 import ProgramareWebJava.entities.Person;
@@ -34,7 +31,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.nio.charset.StandardCharsets;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -79,9 +75,12 @@ public class PersonControllerTest {
     @Autowired
     private OngController ongController;
 
+    @Autowired
+    private ChangePassController changePassController;
+
     @Before
     public void setup() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(personController, newUsersController, indexController,user2eventService,ongController)
+        this.mockMvc = MockMvcBuilders.standaloneSetup(personController, changePassController, newUsersController, indexController, user2eventService, ongController)
                 .build();
 
     }
@@ -108,7 +107,7 @@ public class PersonControllerTest {
         String requestJson = getJsonFromEntity(person);
 
 
-        MvcResult loginResult = mockMvc.perform(post("/login")
+        mockMvc.perform(post("/login")
                 .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
                 .param(csrfToken.getParameterName(), csrfToken.getToken())
                 .secure(true)
@@ -140,7 +139,7 @@ public class PersonControllerTest {
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
         Person personRes = mapper.readValue(result.getResponse().getContentAsString(), Person.class);
         person.setId(person.getId());
-        assertEquals(personRes,person);
+        assertEquals(personRes, person);
     }
 
     @Test
@@ -214,8 +213,8 @@ public class PersonControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        Integer eventId = eventService.getEventsByOng((Ong)userService.getUserByUsername("username2")).get(0).getId();
-        MvcResult eventResult = mockMvc.perform(put("/person/joinevent/{eventid}",eventId)
+        Integer eventId = eventService.getEventsByOng((Ong) userService.getUserByUsername("username2")).get(0).getId();
+        MvcResult eventResult = mockMvc.perform(put("/person/joinevent/{eventid}", eventId)
                 .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
                 .sessionAttr("username", "username3")
                 .param(csrfToken.getParameterName(), csrfToken.getToken())
@@ -229,7 +228,7 @@ public class PersonControllerTest {
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
         Event responseEvent = mapper.readValue(eventResult.getResponse().getContentAsString(), Event.class);
         responseEvent.setDate(eventInDb.getDate());
-        assertEquals(eventInDb,responseEvent);
+        assertEquals(eventInDb, responseEvent);
 
         mockMvc.perform(post("/ong/event")
                 .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
@@ -252,13 +251,13 @@ public class PersonControllerTest {
                 .andReturn();
 
         List<Event> events = mapper.readValue(eventResult.getResponse().getContentAsString(), List.class);
-        assertEquals(events.size(),1);
+        assertEquals(events.size(), 1);
         List<Event> returnEvents = eventService.getEventsByOng((Ong) userService.getUserByUsername("username2"));
-        assertEquals(returnEvents.size(),2);
+        assertEquals(returnEvents.size(), 2);
 //        assertEquals(events.get(0).get("description"),"Va fi tare");
 //        assertEquals(events.get(0).get("ong"), userService.getUserByUsername("username2"));
 
-        mockMvc.perform(delete("/person/event/delete/{eventid}",eventInDb.getId())
+        mockMvc.perform(delete("/person/event/delete/{eventid}", eventInDb.getId())
                 .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
                 .sessionAttr("username", "username3")
                 .param(csrfToken.getParameterName(), csrfToken.getToken())
@@ -266,7 +265,7 @@ public class PersonControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("Deleted user username3")));
 
-        assertEquals(user2eventService.getEventsbyPerson((Person) userService.getUserByUsername("username3")).size(),0);
+        assertEquals(user2eventService.getEventsbyPerson((Person) userService.getUserByUsername("username3")).size(), 0);
 
         eventResult = mockMvc.perform(get("/person/allevents")
                 .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
@@ -277,7 +276,7 @@ public class PersonControllerTest {
                 .andReturn();
 
         List<Event> resultEvents = mapper.readValue(eventResult.getResponse().getContentAsString(), List.class);
-        assertEquals(resultEvents.size(),0);
+        assertEquals(resultEvents.size(), 0);
 
         mockMvc.perform(get("/logout")
                 .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
@@ -286,6 +285,20 @@ public class PersonControllerTest {
                 .secure(true))
                 .andExpect(status().isOk())
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("Logout user username3")));
+    }
+
+    @Test
+    public void g_changePassword() throws Exception {
+        mockMvc.perform(post("/changepassword/{username}", "username3")
+                .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
+                .param(csrfToken.getParameterName(), csrfToken.getToken())
+                .param("password", "password2")
+                .param("verifypassword", "password2")
+                .param("newpassword", "password3")
+                .secure(true))
+                .andExpect(status().isOk());
+
+        assertEquals("password3", userService.getUserByUsername("username3").getPassword());
     }
 
     @Test

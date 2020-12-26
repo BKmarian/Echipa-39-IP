@@ -15,6 +15,7 @@
 //    private CustomAuthentificationProvider authProvider;
 //
 //    @Override
+//    @Autowired
 //    protected void configure(HttpSecurity http) throws Exception {
 //        http
 //                .authorizeRequests()
@@ -30,7 +31,7 @@
 //    }
 //
 //    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//    public void configureGlobal(AuthenticationManagerBuilder auth) {
 //        auth.authenticationProvider(authProvider);
 //    }
 //}

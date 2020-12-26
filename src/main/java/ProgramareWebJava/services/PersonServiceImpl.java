@@ -16,13 +16,13 @@ public class PersonServiceImpl implements PersonService {
     private PersonRepository personRepository;
 
     @Autowired
-    User2eventService user2eventService;
+    private User2eventService user2eventService;
 
     @Autowired
-    EventService eventService;
+    private EventService eventService;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
     public void setPersonRepository(PersonRepository personRepository) {
@@ -31,13 +31,13 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Iterable<Person> listAllPersons() {
-        return  StreamSupport.stream(personRepository.findAll().spliterator(), false).filter(p -> !p.getIsadmin()).collect(Collectors.toList());
+        return StreamSupport.stream(personRepository.findAll().spliterator(), false).filter(p -> !p.getIsadmin()).collect(Collectors.toList());
     }
 
     @Override
     public List<Event> getEventsJoined(String username) {
-        List<Event> eventsByPers = user2eventService.getEventsbyPerson((Person)userService.getUserByUsername(username));
-        List<Event> allEvents = (ArrayList<Event>)eventService.listAllEvents();
+        List<Event> eventsByPers = user2eventService.getEventsbyPerson((Person) userService.getUserByUsername(username));
+        List<Event> allEvents = (ArrayList<Event>) eventService.listAllEvents();
         return allEvents.stream().filter(eventsByPers::contains).collect(Collectors.toList());
     }
 

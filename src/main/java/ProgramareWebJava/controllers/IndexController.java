@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @RestController
 public class IndexController {
@@ -34,14 +32,6 @@ public class IndexController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/allevents")
-    @ResponseBody
-    public List<Event> guestEvents() {
-        return StreamSupport
-                .stream(eventService.listAllEvents().spliterator(), false)
-                .collect(Collectors.toList());
-    }
-
     @GetMapping(value = {"/login", "/"})
     @ResponseBody
     public ResponseEntity<List<Event>> getEventImages() {
@@ -51,11 +41,11 @@ public class IndexController {
 
     @GetMapping(value = "/logout")
     @ResponseBody
-    public String logout(HttpServletRequest request) {
+    public ResponseEntity<String> logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String name = session.getAttribute("username").toString();
         session.invalidate();
-        return "Logout user " + name;
+        return new ResponseEntity<>("Logout user " + name, HttpStatus.OK);
     }
 
     @PostMapping(value = "/login")

@@ -12,11 +12,6 @@ public class OngServiceImpl implements OngService {
     private OngRepository ongRepository;
 
     @Override
-    public Iterable<Ong> listAllOngs() {
-        return ongRepository.findAll();
-    }
-
-    @Override
     public Iterable<Ong> findOngsToAccept() {
         return ongRepository.findOngsToAccept();
     }

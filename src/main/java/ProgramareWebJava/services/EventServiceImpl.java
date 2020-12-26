@@ -56,7 +56,6 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<Event> findsLastFIVEvents() {
         List<Event> lista = (ArrayList<Event>)(eventRepository.findsLastFIVEvents());
-        int lungime = Math.min(lista.size(), 5);
-        return lista.subList(0,lungime);
+        return lista.subList(0,Math.min(lista.size(), 5));
     }
 }

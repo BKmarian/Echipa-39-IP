@@ -80,12 +80,6 @@ public class OngController {
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 
-    @RequestMapping("/ong/event/{eventid}")
-    @ResponseBody
-    public ResponseEntity<Event> getEvent(@PathVariable Integer eventid) {
-        return new ResponseEntity<>(eventService.getEventById(eventid).get(), HttpStatus.OK);
-    }
-
     @RequestMapping("/ong/event/update")
     @ResponseBody
     public ResponseEntity<String> update(@Valid @RequestBody Event event) {

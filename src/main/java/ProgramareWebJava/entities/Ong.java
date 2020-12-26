@@ -2,7 +2,6 @@ package ProgramareWebJava.entities;
 
 import com.sun.istack.NotNull;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -12,7 +11,6 @@ import javax.validation.constraints.Pattern;
 @Setter
 @Getter
 @EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
 @DiscriminatorValue(value = "ong")
 public class Ong extends User {
 

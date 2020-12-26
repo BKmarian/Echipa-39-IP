@@ -13,7 +13,6 @@ import javax.validation.constraints.Pattern;
 @Setter
 @Getter
 @EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
 @DiscriminatorValue(value = "person")
 public class Person extends User {
 

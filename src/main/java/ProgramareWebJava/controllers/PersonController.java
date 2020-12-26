@@ -85,17 +85,4 @@ public class PersonController {
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/person")
-    @ResponseBody
-    public ResponseEntity<Person> savePerson(Person person, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        if (person.getPassword() == null) {
-            int userId = Integer.parseInt(session.getAttribute("userid").toString());
-            Person p = (Person) userService.getUserById(userId);
-            person.setPassword(p.getPassword());
-        }
-        userService.saveUser(person);
-        return new ResponseEntity<>(person, HttpStatus.OK);
-    }
-
 }

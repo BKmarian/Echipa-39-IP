@@ -11,7 +11,6 @@ import lombok.*;
 @Setter
 @Getter
 @EqualsAndHashCode(callSuper = false,exclude = {"id"})
-@ToString
 @Table(name = "user")
 @Inheritance
 @NoArgsConstructor

@@ -11,7 +11,6 @@ import java.util.Date;
 @Setter
 @Getter
 @EqualsAndHashCode
-@ToString
 @Table(name = "Event")
 public class Event {
 

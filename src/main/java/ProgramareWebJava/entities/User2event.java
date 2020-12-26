@@ -8,8 +8,6 @@ import javax.persistence.*;
 @Entity
 @Setter
 @Getter
-@EqualsAndHashCode
-@ToString
 @Table(name = "User2event")
 @NoArgsConstructor
 public class User2event {

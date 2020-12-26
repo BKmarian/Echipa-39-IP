@@ -20,10 +20,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.getUserById(id);
     }
 
-    @Override
-    public Iterable<User> listAllUsers() {
-        return userRepository.findAll();
-    }
 
     public void deleteUser(Integer id) {
         userRepository.deleteById(id);

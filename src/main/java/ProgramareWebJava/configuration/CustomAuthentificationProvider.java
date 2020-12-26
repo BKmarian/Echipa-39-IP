@@ -12,40 +12,33 @@
 //import java.util.ArrayList;
 //
 //@Component
-//class CustomAuthentificationProvider
+//public class CustomAuthentificationProvider
 //        implements AuthenticationProvider {
 //
 //    @Autowired
 //    private UserService userService;
 //
 //    @Override
-//    public Authentication authenticate(Authentication authentication)
-//            throws AuthenticationException {
+//    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 //
-//        String name = authentication.getName();
-//        String password = authentication.getCredentials().toString();
-//
-//        if (shouldAuthenticateAgainstThirdPartySystem(name, password)) {
-//
-//            return new UsernamePasswordAuthenticationToken(
-//                    name, password, new ArrayList<>());
-//        } else {
-//            return null;
+//        if (shouldAuthenticateAgainstThirdPartySystem(authentication.getName(), authentication.getCredentials().toString())) {
+//            return new UsernamePasswordAuthenticationToken(authentication.getName(), authentication.getCredentials().toString(), new ArrayList<>());
 //        }
+//        return null;
 //    }
-//    public boolean shouldAuthenticateAgainstThirdPartySystem(String username,String password) {
 //
-//        if("admin".equals(username) && "admin".equals(password))
+//    public boolean shouldAuthenticateAgainstThirdPartySystem(String username, String password) {
+//
+//        if ("admin".equals(username) && "admin".equals(password))
 //            return true;
 //
 //        User user = userService.getUserByUsername(username);
-//
-//        return user.getPassword().equals(password);
+//        return user != null && user.getPassword().equals(password);
 //
 //    }
+//
 //    @Override
 //    public boolean supports(Class<?> authentication) {
-//        return authentication.equals(
-//                UsernamePasswordAuthenticationToken.class);
+//        return authentication.equals(UsernamePasswordAuthenticationToken.class);
 //    }
 //}

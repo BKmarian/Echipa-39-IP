@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ProjectExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<String> handleInvalidMovie(MethodArgumentNotValidException e) {
+    public ResponseEntity<String> handleInvalidData(MethodArgumentNotValidException e) {
         return ResponseEntity.badRequest()
                 .body("For the filed called '" + e.getFieldError().getField() +
                         "' , its value is not valid -> (" + e.getFieldError().getRejectedValue() +
@@ -18,7 +18,7 @@ public class ProjectExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleNotFoundMovie(Exception e) {
+    public ResponseEntity<String> handleException(Exception e) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(e.getMessage());

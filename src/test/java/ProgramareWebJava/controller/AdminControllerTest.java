@@ -1,13 +1,13 @@
 package ProgramareWebJava.controller;
 
 import ProgramareWebJava.SpringBootWebApplication;
-import ProgramareWebJava.controllers.IndexController;
-import ProgramareWebJava.controllers.NewUsersController;
-import ProgramareWebJava.controllers.OngController;
-import ProgramareWebJava.entities.Event;
+import ProgramareWebJava.controllers.*;
 import ProgramareWebJava.entities.Ong;
+import ProgramareWebJava.entities.Person;
 import ProgramareWebJava.entities.User;
 import ProgramareWebJava.services.EventService;
+import ProgramareWebJava.services.OngService;
+import ProgramareWebJava.services.PersonService;
 import ProgramareWebJava.services.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,9 +32,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -43,7 +44,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = {SpringBootWebApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class OngControllerTest {
+public class AdminControllerTest {
 
     private MockMvc mockMvc;
 
@@ -55,13 +56,7 @@ public class OngControllerTest {
     private static final CsrfToken csrfToken = httpSessionCsrfTokenRepository.generateToken(new MockHttpServletRequest());
 
     @Autowired
-    private NewUsersController newUsersController;
-
-    @Autowired
     private OngController ongController;
-
-    @Autowired
-    private IndexController indexController;
 
     @Autowired
     private UserService userService;
@@ -69,22 +64,95 @@ public class OngControllerTest {
     @Autowired
     private EventService eventService;
 
+    @Autowired
+    private PersonController personController;
+
+    @Autowired
+    private NewUsersController newUsersController;
+
+    @Autowired
+    private PersonService personService;
+
+    @Autowired
+    private OngService ongService;
+
+    @Autowired
+    private AdminController adminController;
+
+    @Autowired
+    private IndexController indexController;
+
     @Before
     public void setup() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(ongController, newUsersController, indexController)
+        this.mockMvc = MockMvcBuilders.standaloneSetup(personController, newUsersController, ongController, adminController, indexController)
                 .build();
 
     }
 
     @Test
-    public void a_login() throws Exception {
-        mockMvc.perform(get("/login"))
+    public void a_deletePerson() throws Exception {
+        User person = Person.builder()
+                .age(24)
+                .job("software engineer")
+                .fullName("Person 1")
+                .phone("0722647764")
+                .email("sichitium@yahoo.com")
+                .username("username2")
+                .password("password2")
+                .isadmin(false)
+                .build();
+        String requestJson = getJsonFromEntity(person);
+
+
+        mockMvc.perform(post("/login")
+                .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
+                .param(csrfToken.getParameterName(), csrfToken.getToken())
+                .secure(true)
+                .param("username", "admin")
+                .param("password", "admin"))
                 .andExpect(status().isOk())
                 .andReturn();
+
+        mockMvc.perform(put("/createperson")
+                .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
+                .param(csrfToken.getParameterName(), csrfToken.getToken())
+                .secure(true)
+                .contentType(APPLICATION_JSON_UTF8)
+                .content(requestJson))
+                .andExpect(status().isCreated())
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("username2 saved")));
+
+        Person pers = StreamSupport
+                .stream(personService.listAllPersons().spliterator(), false)
+                .collect(Collectors.toList()).get(0);
+
+        mockMvc.perform(delete("/admin/deletePerson/{personId}", pers.getId())
+                .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
+                .param(csrfToken.getParameterName(), csrfToken.getToken())
+                .secure(true)
+                .contentType(APPLICATION_JSON_UTF8)
+                .content(requestJson))
+                .andExpect(status().isOk());
+
+        MvcResult result = mockMvc.perform(get("/admin/persons")
+                .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
+                .param(csrfToken.getParameterName(), csrfToken.getToken())
+                .secure(true)
+                .contentType(APPLICATION_JSON_UTF8)
+                .content(requestJson))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+        List<Person> personRes = mapper.readValue(result.getResponse().getContentAsString(), List.class);
+
+        assertEquals(0, personRes.size());
     }
 
     @Test
-    public void b_testOngService() throws Exception {
+    public void b_deleteEventAndOng() throws Exception {
+
         User ong = Ong.builder()
                 .approved(false)
                 .contact("0722647764")
@@ -98,16 +166,6 @@ public class OngControllerTest {
                 .build();
         String requestJson = getJsonFromEntity(ong);
 
-
-        mockMvc.perform(post("/login")
-                .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
-                .param(csrfToken.getParameterName(), csrfToken.getToken())
-                .secure(true)
-                .param("username", "admin")
-                .param("password", "admin"))
-                .andExpect(status().isOk())
-                .andReturn();
-
         mockMvc.perform(put("/createong")
                 .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
                 .param(csrfToken.getParameterName(), csrfToken.getToken())
@@ -117,47 +175,23 @@ public class OngControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("username2 saved")));
 
+        Ong ongFromDb = StreamSupport
+                .stream(ongService.findOngsToAccept().spliterator(), false)
+                .collect(Collectors.toList()).get(0);
 
-    }
-
-    @Test
-    public void c_updateOng() throws Exception {
-        Ong ong = (Ong) userService.getUserByEmail("sichitium@yahoo.com");
-        ong.setFullName("Ong Updated");
-        ong.setUsername("username3");
-        String requestJson = getJsonFromEntity(ong);
-
-        mockMvc.perform(post("/updateOng")
+        mockMvc.perform(post("/admin/acceptong/{ongId}", ongFromDb.getId())
                 .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
                 .param(csrfToken.getParameterName(), csrfToken.getToken())
-                .secure(true)
-                .contentType(APPLICATION_JSON_UTF8)
-                .content(requestJson))
+                .secure(true))
                 .andExpect(status().isOk())
-                .andExpect(content().string(org.hamcrest.Matchers.containsString("Ong with id: username3 updated ")));
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("Ong with id " + ongFromDb.getId() + " was accepted")));
 
-        assertNotNull(userService.getUserByUsername("username3"));
-        assertEquals(((Ong) userService.getUserByEmail("sichitium@yahoo.com")).getFullName(), "Ong Updated");
-    }
+        assertEquals(StreamSupport.stream(ongService.findOngsToAccept().spliterator(), false).count(),0);
+        assertEquals(StreamSupport.stream(ongService.findOngsAccepted().spliterator(), false).count(),1);
 
-    @Test
-    public void d_postLogin() throws Exception {
-
-        mockMvc.perform(post("/login")
+        mockMvc.perform(post("/ong/event")
                 .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
-                .param(csrfToken.getParameterName(), csrfToken.getToken())
-                .secure(true)
-                .param("username", "username3")
-                .param("password", "password2"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(org.hamcrest.Matchers.containsString("Ong connected with name username3")));
-    }
-
-    @Test
-    public void e_createAndDeleteEvent() throws Exception {
-        MvcResult result = mockMvc.perform(post("/ong/event")
-                .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
-                .sessionAttr("username", "username3")
+                .sessionAttr("username", "username2")
                 .param(csrfToken.getParameterName(), csrfToken.getToken())
                 .param("date", "2020-08-09")
                 .param("description", "Va fi misto")
@@ -168,60 +202,32 @@ public class OngControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
+        mockMvc.perform(delete("/admin/deleteOng/{ongId}", ongFromDb.getId())
+                .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
+                .param(csrfToken.getParameterName(), csrfToken.getToken())
+                .secure(true)
+                .contentType(APPLICATION_JSON_UTF8)
+                .content(requestJson))
+                .andExpect(status().isOk());
+
+        int size = (int) StreamSupport.stream(eventService.listAllEvents().spliterator(), false).count();
+
+        assertEquals(0, size);
+
+        MvcResult result = mockMvc.perform(get("/admin/ongs")
+                .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
+                .param(csrfToken.getParameterName(), csrfToken.getToken())
+                .secure(true)
+                .contentType(APPLICATION_JSON_UTF8)
+                .content(requestJson))
+                .andExpect(status().isOk())
+                .andReturn();
+
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-        Event response = mapper.readValue(result.getResponse().getContentAsString(), Event.class);
-        assertEquals(response.getName(), "Ong caini");
-        assertEquals(response.getDescription(), "Va fi misto");
+        List<Ong> personRes = mapper.readValue(result.getResponse().getContentAsString(), List.class);
 
-        result = mockMvc.perform(post("/ong/event")
-                .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
-                .sessionAttr("username", "username3")
-                .param(csrfToken.getParameterName(), csrfToken.getToken())
-                .param("date", "2021-08-09")
-                .param("description", "Va fi tare")
-                .param("name", "Ong pisici")
-                .param("address", "Strada Academiei 12")
-                .param("postal_code", "210113")
-                .secure(true))
-                .andExpect(status().isOk())
-                .andReturn();
-
-        response = mapper.readValue(result.getResponse().getContentAsString(), Event.class);
-        assertEquals(response.getName(), "Ong pisici");
-        assertEquals(response.getDescription(), "Va fi tare");
-
-        Event event = eventService.getEventsByOng((Ong) userService.getUserByUsername("username3")).get(0);
-        String jsonEvent = getJsonFromEntity(event);
-
-        mockMvc.perform(post("/ong/event/update")
-                .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
-                .param(csrfToken.getParameterName(), csrfToken.getToken())
-                .contentType(APPLICATION_JSON_UTF8)
-                .content(jsonEvent)
-                .secure(true))
-                .andExpect(status().isOk())
-                .andExpect(content().string(org.hamcrest.Matchers.containsString("Event successfully updated")));
-
-        result = mockMvc.perform(get("/ong/myEvents")
-                .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
-                .sessionAttr("username", "username3")
-                .param(csrfToken.getParameterName(), csrfToken.getToken())
-                .secure(true))
-                .andExpect(status().isOk())
-                .andReturn();
-
-        List<Event> events = eventService.getEventsByOng((Ong) userService.getUserByUsername("username3"));
-        String jsonEvents = getJsonFromEntity(events);
-        String expectedJsonEvents = getJsonFromEntity(mapper.readValue(result.getResponse().getContentAsString(), List.class));
-        assertEquals(expectedJsonEvents, jsonEvents);
-
-        mockMvc.perform(delete("/event/delete/{eventid}", events.get(0).getId())
-                .sessionAttr(TOKEN_ATTR_NAME, csrfToken)
-                .param(csrfToken.getParameterName(), csrfToken.getToken())
-                .secure(true))
-                .andExpect(status().isOk())
-                .andExpect(content().string(org.hamcrest.Matchers.containsString("Deleted event with id:" + events.get(0).getId())));
+        assertEquals(0, personRes.size());
     }
 
     @Test

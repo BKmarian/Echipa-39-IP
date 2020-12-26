@@ -32,11 +32,6 @@ public class User2eventServiceImpl implements User2eventService {
     }
 
     @Override
-    public Optional<User2event> getUser2eventById(Integer id) {
-        return user2eventRepository.findById(id);
-    }
-
-    @Override
     public User2event saveUser2event(User2event user2event) {
         return user2eventRepository.save(user2event);
     }
