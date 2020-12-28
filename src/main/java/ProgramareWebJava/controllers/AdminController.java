@@ -2,6 +2,8 @@ package ProgramareWebJava.controllers;
 
 import ProgramareWebJava.entities.*;
 import ProgramareWebJava.services.*;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +34,11 @@ public class AdminController {
 
     @DeleteMapping("/admin/deleteOng/{ongId}")
     @ResponseBody
-    public ResponseEntity<Ong> deleteOng(@PathVariable Integer ongId) {
+    @ApiOperation(
+            value = "Get ong by id",
+            notes = "Delete ong user by given id",
+            response = Ong.class)
+    public ResponseEntity<Ong> deleteOng(@ApiParam("The id of the ong user") @PathVariable Integer ongId) {
         Ong ong = (Ong) userService.getUserById(ongId);
         deleteEvents(ong);
         userService.deleteUser(ongId);
@@ -42,7 +48,11 @@ public class AdminController {
 
     @DeleteMapping("/admin/deletePerson/{personId}")
     @ResponseBody
-    public ResponseEntity<Person> deletePerson(@PathVariable Integer personId) {
+    @ApiOperation(
+            value = "Get person by id",
+            notes = "Delete person user by given id",
+            response = Person.class)
+    public ResponseEntity<Person> deletePerson(@ApiParam("The id of the person user") @PathVariable Integer personId) {
         Person user = (Person) userService.getUserById(personId);
         deleteUser2EventsByPerson(user);
         userService.deleteUser(personId);
@@ -51,6 +61,10 @@ public class AdminController {
 
     @GetMapping("/admin/persons")
     @ResponseBody
+    @ApiOperation(
+            value = "Get all person users",
+            notes = "Get all person users as a list.",
+            response = List.class)
     public ResponseEntity<List<Person>> persons() {
         return new ResponseEntity<>(StreamSupport
                 .stream(personService.listAllPersons().spliterator(), false)
@@ -59,6 +73,10 @@ public class AdminController {
 
     @GetMapping("/admin/ongs")
     @ResponseBody
+    @ApiOperation(
+            value = "Get all ong users",
+            notes = "Get all ong users as a list.",
+            response = List.class)
     public ResponseEntity<List<Ong>> ongs() {
         return new ResponseEntity<>(StreamSupport
                 .stream(ongService.findOngsAccepted().spliterator(), false)
@@ -67,7 +85,11 @@ public class AdminController {
 
     @PostMapping(value = "/admin/acceptong/{ongId}")
     @ResponseBody
-    public ResponseEntity<String> acceptOngPost(@PathVariable Integer ongId) {
+    @ApiOperation(
+            value = "Get ong by id",
+            notes = "Admin accepts ong",
+            response = String.class)
+    public ResponseEntity<String> acceptOngPost(@ApiParam("The id of the ong user") @PathVariable Integer ongId) {
         Ong ong = (Ong) userService.getUserById(ongId);
         ong.setApproved(true);
         userService.saveUser(ong);

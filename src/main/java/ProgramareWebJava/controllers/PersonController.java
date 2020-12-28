@@ -1,7 +1,14 @@
 package ProgramareWebJava.controllers;
 
-import ProgramareWebJava.entities.*;
-import ProgramareWebJava.services.*;
+import ProgramareWebJava.entities.Event;
+import ProgramareWebJava.entities.Person;
+import ProgramareWebJava.entities.User2event;
+import ProgramareWebJava.services.EventService;
+import ProgramareWebJava.services.PersonService;
+import ProgramareWebJava.services.User2eventService;
+import ProgramareWebJava.services.UserService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,22 +40,34 @@ public class PersonController {
 
     @GetMapping("/person/profile")
     @ResponseBody
+    @ApiOperation(
+            value = "Show person profile",
+            notes = "Show logged in person profile",
+            response = String.class)
     public ResponseEntity<Person> profile(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String username = session.getAttribute("username").toString();
-        return new ResponseEntity<>((Person) userService.getUserByUsername(username),HttpStatus.OK);
+        return new ResponseEntity<>((Person) userService.getUserByUsername(username), HttpStatus.OK);
     }
 
     @PostMapping(value = "/updatePerson")
     @ResponseBody
-    public ResponseEntity<String> updatePerson(@Valid @RequestBody Person person) {
+    @ApiOperation(
+            value = "Person fields",
+            notes = "Update person fields",
+            response = String.class)
+    public ResponseEntity<String> updatePerson(@ApiParam("The person parameters") @Valid @RequestBody Person person) {
         userService.saveUser(person);
         return new ResponseEntity<>("Person with id: " + person.getUsername() + " updated ", HttpStatus.OK);
     }
 
     @DeleteMapping("/person/event/delete/{eventid}")
     @ResponseBody
-    public ResponseEntity<String> deleteUser2event(@PathVariable Integer eventid, HttpServletRequest request) {
+    @ApiOperation(
+            value = "Get event by id",
+            notes = "Remove event joined by person",
+            response = String.class)
+    public ResponseEntity<String> deleteUser2event(@ApiParam("The event id") @PathVariable Integer eventid, HttpServletRequest request) {
         HttpSession session = request.getSession();
         String username = session.getAttribute("username").toString();
         try {
@@ -68,6 +87,10 @@ public class PersonController {
 
     @GetMapping("/person/allevents")
     @ResponseBody
+    @ApiOperation(
+            value = "Get user events",
+            notes = "Show events joined by person logged in",
+            response = List.class)
     public ResponseEntity<List<Event>> allevents(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String username = session.getAttribute("username").toString();
@@ -76,7 +99,11 @@ public class PersonController {
 
     @PutMapping("/person/joinevent/{eventid}")
     @ResponseBody
-    public ResponseEntity<Event> addEvent(HttpServletRequest request, @PathVariable Integer eventid) {
+    @ApiOperation(
+            value = "Get event by id",
+            notes = "Person user joins event",
+            response = Event.class)
+    public ResponseEntity<Event> addEvent(HttpServletRequest request, @ApiParam("The event of the id") @PathVariable Integer eventid) {
         HttpSession session = request.getSession();
         String username = session.getAttribute("username").toString();
         Person person = (Person) userService.getUserByUsername(username);

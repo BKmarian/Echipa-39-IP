@@ -5,6 +5,8 @@ import ProgramareWebJava.entities.Location;
 import ProgramareWebJava.entities.Ong;
 import ProgramareWebJava.entities.User2event;
 import ProgramareWebJava.services.*;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,14 +44,22 @@ public class OngController {
 
     @PostMapping(value = "/updateOng")
     @ResponseBody
-    public ResponseEntity<String> updateONG(@Valid @RequestBody Ong ong) {
+    @ApiOperation(
+            value = "Ong fields",
+            notes = "Update ong fields",
+            response = String.class)
+    public ResponseEntity<String> updateONG(@ApiParam("The ong parameters") @Valid @RequestBody Ong ong) {
         userService.saveUser(ong);
         return new ResponseEntity<>("Ong with id: " + ong.getUsername() + " updated ", HttpStatus.OK);
     }
 
     @DeleteMapping("/event/delete/{eventid}")
     @ResponseBody
-    public ResponseEntity<String> deleteEvent(@PathVariable Integer eventid) {
+    @ApiOperation(
+            value = "Find id by event",
+            notes = "Delete event created by ong",
+            response = String.class)
+    public ResponseEntity<String> deleteEvent(@ApiParam("The id of the event") @PathVariable Integer eventid) {
         deleteUser2Event(eventid);
         eventService.deleteEvent(eventid);
         return new ResponseEntity<>("Deleted event with id:" + eventid, HttpStatus.OK);
@@ -65,7 +75,11 @@ public class OngController {
 
     @PostMapping(value = "/ong/event")
     @ResponseBody
-    public ResponseEntity<Event> saveEvent(HttpServletRequest request, @RequestParam Map<String, String> parameters) throws ParseException {
+    @ApiOperation(
+            value = "Create event",
+            notes = "Create event by ong with given fields",
+            response = Event.class)
+    public ResponseEntity<Event> saveEvent(HttpServletRequest request,@ApiParam("The parameters of the event")  @RequestParam Map<String, String> parameters) throws ParseException {
 
         HttpSession session = request.getSession();
         Ong ong = (Ong) userService.getUserByUsername(session.getAttribute("username").toString());
@@ -82,13 +96,21 @@ public class OngController {
 
     @RequestMapping("/ong/event/update")
     @ResponseBody
-    public ResponseEntity<String> update(@Valid @RequestBody Event event) {
+    @ApiOperation(
+            value = "Update event",
+            notes = "Update event by ong with given fields",
+            response = String.class)
+    public ResponseEntity<String> update(@ApiParam("The parameters of the event") @Valid @RequestBody Event event) {
         eventService.saveEvent(event);
         return new ResponseEntity<>("Event successfully updated", HttpStatus.OK);
     }
 
     @GetMapping("/ong/myEvents")
     @ResponseBody
+    @ApiOperation(
+            value = "Display events",
+            notes = "Display Events by the logged in ong",
+            response = List.class)
     public ResponseEntity<List<Event>> getEvents(HttpServletRequest request) {
         String username = request.getSession().getAttribute("username").toString();
         return new ResponseEntity<>(eventService.getEventsByOng((Ong) userService.getUserByUsername(username)), HttpStatus.OK);

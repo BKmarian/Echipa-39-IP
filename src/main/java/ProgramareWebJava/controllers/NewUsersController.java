@@ -2,6 +2,8 @@ package ProgramareWebJava.controllers;
 
 import ProgramareWebJava.entities.*;
 import ProgramareWebJava.services.*;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +25,11 @@ public class NewUsersController {
 
     @PutMapping(value = "/createperson")
     @ResponseBody
-    public ResponseEntity<String> createPerson(@Valid @RequestBody Person person) {
+    @ApiOperation(
+            value = "Person fields",
+            notes = "Create Person user",
+            response = String.class)
+    public ResponseEntity<String> createPerson(@ApiParam("The person parameters") @Valid @RequestBody Person person) {
         String username = person.getUsername();
         try {
             if (userService.getUserByUsername(username) != null)
@@ -37,7 +43,11 @@ public class NewUsersController {
 
     @PutMapping(value = "/createong")
     @ResponseBody
-    public ResponseEntity<String> createOng(@Valid @RequestBody Ong ong) {
+    @ApiOperation(
+            value = "Ong fields",
+            notes = "Create Ong user",
+            response = String.class)
+    public ResponseEntity<String> createOng(@ApiParam("The ong parameters") @Valid @RequestBody Ong ong) {
         String username = ong.getUsername();
         try {
             if (userService.getUserByUsername(username) != null)

@@ -2,6 +2,8 @@ package ProgramareWebJava.controllers;
 
 import ProgramareWebJava.entities.*;
 import ProgramareWebJava.services.*;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +27,12 @@ public class ChangePassController {
 
     @PostMapping(value = "/changepassword/{username}")
     @ResponseBody
-    public ResponseEntity<User> changePassword(@PathVariable("username") String username, @RequestParam Map<String, String> parameters) {
+    @ApiOperation(
+            value = "Get user by username",
+            notes = "Change user password",
+            response = User.class)
+    public ResponseEntity<User> changePassword(@ApiParam("The username of the user") @PathVariable("username") String username,
+                                               @ApiParam("Password parameters") @RequestParam Map<String, String> parameters) {
         User user = userService.getUserByUsername(username);
         String password = parameters.get("password");
         String verifyPassword = parameters.get("verifypassword");

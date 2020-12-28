@@ -7,6 +7,8 @@ import ProgramareWebJava.services.EventService;
 import ProgramareWebJava.services.OngService;
 import ProgramareWebJava.services.PersonService;
 import ProgramareWebJava.services.UserService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +36,10 @@ public class IndexController {
 
     @GetMapping(value = {"/login", "/"})
     @ResponseBody
+    @ApiOperation(
+            value = "Get last five elements",
+            notes = "Get last five elements",
+            response = List.class)
     public ResponseEntity<List<Event>> getEventImages() {
         List<Event> lista = eventService.findsLastFIVEvents();
         return new ResponseEntity<>(lista, HttpStatus.OK);
@@ -41,6 +47,10 @@ public class IndexController {
 
     @GetMapping(value = "/logout")
     @ResponseBody
+    @ApiOperation(
+            value = "Destroy session parameter",
+            notes = "Logout",
+            response = String.class)
     public ResponseEntity<String> logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String name = session.getAttribute("username").toString();
@@ -50,7 +60,11 @@ public class IndexController {
 
     @PostMapping(value = "/login")
     @ResponseBody
-    public ResponseEntity<String> login(HttpServletRequest request, @RequestParam Map<String, String> parameters) {
+    @ApiOperation(
+            value = "Login user with username and password",
+            notes = "Login user with username and password",
+            response = String.class)
+    public ResponseEntity<String> login(HttpServletRequest request, @ApiParam("The username and password of the user") @RequestParam Map<String, String> parameters) {
         String username = parameters.get("username");
         String password = parameters.get("password");
         try {

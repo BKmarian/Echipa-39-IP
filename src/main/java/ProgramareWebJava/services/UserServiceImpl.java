@@ -29,6 +29,7 @@ public class UserServiceImpl implements UserService {
     public void deleteAll() {
         userRepository.deleteAll();
     }
+
     public void saveUser(User user) {
         userRepository.save(user);
     }
