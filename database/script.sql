@@ -37,7 +37,7 @@ CREATE TABLE `event` (
                          FOREIGN KEY `fk_3` (ong_id) REFERENCES `user`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE `user2event` (
+CREATE TABLE `userToEvent` (
                               `id` int(11) NOT NULL AUTO_INCREMENT,
                               `event_id` int(11) NOT NULL,
                               `user_id` int(11) NOT NULL,
@@ -55,4 +55,4 @@ CREATE TABLE `user2event` (
 -- INSERT INTO `event`(location,description,name,ong_id,`date`) values ('bucuresti','dans popular','dans popular',3,str_to_date('03/02/2009','%d/%m/%Y'));
 -- INSERT INTO `event`(location,description,name,ong_id,`date`) values ('bucuresti','dans modern','dans modern',3,str_to_date('03/02/2009','%d/%m/%Y'));
 -- INSERT INTO `event`(location,description,name,ong_id,`date`) values ('bucuresti','dans traditional','dans traditional',3,str_to_date('03/02/2009','%d/%m/%Y'));
--- INSERT INTO `user2event`(event_id,user_id) values (1,1);
+-- INSERT INTO `userToEvent`(event_id,user_id) values (1,1);

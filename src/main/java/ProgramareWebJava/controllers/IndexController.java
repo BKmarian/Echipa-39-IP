@@ -38,7 +38,6 @@ public class IndexController {
     @ResponseBody
     @ApiOperation(
             value = "Get last five elements",
-            notes = "Get last five elements",
             response = List.class)
     public ResponseEntity<List<Event>> getEventImages() {
         List<Event> lista = eventService.findsLastFIVEvents();
@@ -48,8 +47,7 @@ public class IndexController {
     @GetMapping(value = "/logout")
     @ResponseBody
     @ApiOperation(
-            value = "Destroy session parameter",
-            notes = "Logout",
+            value = "Logout and Destroy session parameter",
             response = String.class)
     public ResponseEntity<String> logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -62,7 +60,6 @@ public class IndexController {
     @ResponseBody
     @ApiOperation(
             value = "Login user with username and password",
-            notes = "Login user with username and password",
             response = String.class)
     public ResponseEntity<String> login(HttpServletRequest request, @ApiParam("The username and password of the user") @RequestParam Map<String, String> parameters) {
         String username = parameters.get("username");

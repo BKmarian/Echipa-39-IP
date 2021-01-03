@@ -26,8 +26,7 @@ public class NewUsersController {
     @PutMapping(value = "/createperson")
     @ResponseBody
     @ApiOperation(
-            value = "Person fields",
-            notes = "Create Person user",
+            value = "Create Person user",
             response = String.class)
     public ResponseEntity<String> createPerson(@ApiParam("The person parameters") @Valid @RequestBody Person person) {
         String username = person.getUsername();
@@ -44,8 +43,7 @@ public class NewUsersController {
     @PutMapping(value = "/createong")
     @ResponseBody
     @ApiOperation(
-            value = "Ong fields",
-            notes = "Create Ong user",
+            value = "Create Ong user",
             response = String.class)
     public ResponseEntity<String> createOng(@ApiParam("The ong parameters") @Valid @RequestBody Ong ong) {
         String username = ong.getUsername();

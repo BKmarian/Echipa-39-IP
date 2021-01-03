@@ -27,7 +27,7 @@ public class AdminController {
     private PersonService personService;
 
     @Autowired
-    private User2eventService user2eventService;
+    private UserToEventService userToEventService;
 
     @Autowired
     private UserService userService;
@@ -35,8 +35,7 @@ public class AdminController {
     @DeleteMapping("/admin/deleteOng/{ongId}")
     @ResponseBody
     @ApiOperation(
-            value = "Get ong by id",
-            notes = "Delete ong user by given id",
+            value = "Delete ong user by given id",
             response = Ong.class)
     public ResponseEntity<Ong> deleteOng(@ApiParam("The id of the ong user") @PathVariable Integer ongId) {
         Ong ong = (Ong) userService.getUserById(ongId);
@@ -49,8 +48,7 @@ public class AdminController {
     @DeleteMapping("/admin/deletePerson/{personId}")
     @ResponseBody
     @ApiOperation(
-            value = "Get person by id",
-            notes = "Delete person user by given id",
+            value = "Delete person user by given id",
             response = Person.class)
     public ResponseEntity<Person> deletePerson(@ApiParam("The id of the person user") @PathVariable Integer personId) {
         Person user = (Person) userService.getUserById(personId);
@@ -62,8 +60,7 @@ public class AdminController {
     @GetMapping("/admin/persons")
     @ResponseBody
     @ApiOperation(
-            value = "Get all person users",
-            notes = "Get all person users as a list.",
+            value = "Get all person users as a list.",
             response = List.class)
     public ResponseEntity<List<Person>> persons() {
         return new ResponseEntity<>(StreamSupport
@@ -74,8 +71,7 @@ public class AdminController {
     @GetMapping("/admin/ongs")
     @ResponseBody
     @ApiOperation(
-            value = "Get all ong users",
-            notes = "Get all ong users as a list.",
+            value = "Get all ong users as a list.",
             response = List.class)
     public ResponseEntity<List<Ong>> ongs() {
         return new ResponseEntity<>(StreamSupport
@@ -86,8 +82,7 @@ public class AdminController {
     @PostMapping(value = "/admin/acceptong/{ongId}")
     @ResponseBody
     @ApiOperation(
-            value = "Get ong by id",
-            notes = "Admin accepts ong",
+            value = "Admin accepts ong",
             response = String.class)
     public ResponseEntity<String> acceptOngPost(@ApiParam("The id of the ong user") @PathVariable Integer ongId) {
         Ong ong = (Ong) userService.getUserById(ongId);
@@ -104,10 +99,10 @@ public class AdminController {
     }
 
     public void deleteUser2EventsByPerson(Person user) {
-        ((ArrayList<User2event>) user2eventService.listAllUser2events()).stream().filter(user2event -> user2event.getPerson().getId().equals(user.getId())).forEach(user2event -> user2eventService.deleteUser2event(user2event.getId()));
+        ((ArrayList<UserToEvent>) userToEventService.listAllUser2events()).stream().filter(user2event -> user2event.getPerson().getId().equals(user.getId())).forEach(user2event -> userToEventService.deleteUser2event(user2event.getId()));
     }
 
     public void deleteUser2EventsByEvent(Event event) {
-        ((ArrayList<User2event>) user2eventService.listAllUser2events()).stream().filter(user2event -> user2event.getEvent().getId().equals(event.getId())).forEach(user2event -> user2eventService.deleteUser2event(user2event.getId()));
+        ((ArrayList<UserToEvent>) userToEventService.listAllUser2events()).stream().filter(user2event -> user2event.getEvent().getId().equals(event.getId())).forEach(user2event -> userToEventService.deleteUser2event(user2event.getId()));
     }
 }

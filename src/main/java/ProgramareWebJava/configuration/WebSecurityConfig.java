@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -14,7 +13,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
-    private static final String[] AUTH_WHITELIST = {"/v2/api-docs",
+    private static final String[] AUTH_WHITELIST = {
+            "/v2/api-docs",
             "/v3/api-docs/",
             "/configuration/ui",
             "/swagger-resources",
@@ -22,7 +22,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
             "/configuration/**",
             "/swagger-ui.html",
             "/webjars/**",
-            "/swagger-ui/**","/login", "/"};
+            "/swagger-ui/**",
+            "/login",
+            "/"};
 
     @Autowired
     private CustomAuthentificationProvider authProvider;

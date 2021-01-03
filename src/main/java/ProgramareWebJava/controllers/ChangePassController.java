@@ -28,8 +28,7 @@ public class ChangePassController {
     @PostMapping(value = "/changepassword/{username}")
     @ResponseBody
     @ApiOperation(
-            value = "Get user by username",
-            notes = "Change user password",
+            value = "Change user password",
             response = User.class)
     public ResponseEntity<User> changePassword(@ApiParam("The username of the user") @PathVariable("username") String username,
                                                @ApiParam("Password parameters") @RequestParam Map<String, String> parameters) {

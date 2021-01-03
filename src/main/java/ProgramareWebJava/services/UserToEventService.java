@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface User2eventService {
+public interface UserToEventService {
 
-    Iterable<User2event> listAllUser2events();
+    Iterable<UserToEvent> listAllUser2events();
 
-    User2event saveUser2event(User2event ong);
+    UserToEvent saveUser2event(UserToEvent ong);
 
     void deleteUser2event(Integer id);
 

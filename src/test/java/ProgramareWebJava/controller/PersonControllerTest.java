@@ -7,7 +7,7 @@ import ProgramareWebJava.entities.Ong;
 import ProgramareWebJava.entities.Person;
 import ProgramareWebJava.entities.User;
 import ProgramareWebJava.services.EventService;
-import ProgramareWebJava.services.User2eventService;
+import ProgramareWebJava.services.UserToEventService;
 import ProgramareWebJava.services.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -70,7 +70,7 @@ public class PersonControllerTest {
     private EventService eventService;
 
     @Autowired
-    private User2eventService user2eventService;
+    private UserToEventService userToEventService;
 
     @Autowired
     private OngController ongController;
@@ -80,7 +80,7 @@ public class PersonControllerTest {
 
     @Before
     public void setup() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(personController, changePassController, newUsersController, indexController, user2eventService, ongController)
+        this.mockMvc = MockMvcBuilders.standaloneSetup(personController, changePassController, newUsersController, indexController, userToEventService, ongController)
                 .build();
 
     }
@@ -265,7 +265,7 @@ public class PersonControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("Deleted user username3")));
 
-        assertEquals(user2eventService.getEventsbyPerson((Person) userService.getUserByUsername("username3")).size(), 0);
+        assertEquals(userToEventService.getEventsbyPerson((Person) userService.getUserByUsername("username3")).size(), 0);
 
         eventResult = mockMvc.perform(get("/person/allevents")
                 .sessionAttr(TOKEN_ATTR_NAME, csrfToken)

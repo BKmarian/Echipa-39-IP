@@ -1,15 +1,22 @@
 Ca si proiect am folosit o aplicatie in care persoanele pot da join la diferite evenimente create de onguri.
 Userii sunt de 2 tipuri ong si person , iar conturile lor pot fi sterse de userul admin sau acceptate(doar cazul ongurilor)
 Ong-urile pot crea mai multe evenimente , iar persoanele pot da join sau daca s-au razgandit sa anuleze.
-Fiecare eveniment are cate o locatie(Entitatea Location)
+Ong-urile pot sa -si updateze si vizualizeze informatiile si evenimentele create de ele , iar persoanele pot sa-si updateze, vizualizeze informatiile
+si sa dea join le evenimentele care le intereseaza , cat si sa vada la ce evenimente au dat join
+Userii isi pot schimba parola , ei primind si un mai de confirmare(functionalitate comentata pentru a nu spama , se poate decomenta pentru a se testa)
+Ongurile isi pot sterge evenimentele care le-au creat.
+
+
+Fiecare eveniment are cate o locatie(Entitatea Location) . Relatie Many to One
 Ongurile pot crea mai multe evenimente , astfel Eventurile au o relatie many to one cu entiatea Ong intrucat un event apartine unui singur Ong.
 Entitatea User2Event este o entitate pt a sparge relatia ManyToMany intre person si event . O persoana poate da join la mai multe evenimente , dar si la
 acelasi eveniment pot veni mai multe persoane.
 Entitatile Ong si Person au un parinte comun :Entitatea User
-Userii isi pot schimba parola , ei primind si un mai de confirmare(functionalitate comentata pentru a nu spama , se poate decomenta pentru a se testa)
-Inainte de a-si accesa anumite functionalitati specifice contului , un user trebuie sa se logheze , am tinut cont de asta cand am implementat clasa WebSecuriyConfig
-Coverageul pe proiect este de 92% lines covered.
 Cand se sterge un user , se vor sterge in cascada si Entitatile din tabela User2Event ,  la fel si pt event
 Cand se sterge un ong , i se sterg si eventurile asociate cand si intrarile din tabela User2Event
+
 Pentru implementarea entitatilor am folosite validari din lombok , cat si pentru implementare automata a getterilor setterilor constructorilor cu param si fara , equals , hashCode
-Am folosit SpringSecurity pentru a limita accesul unor resurse doar daca userul e logat
+Am folosit SpringSecurity pentru a limita accesul la unele resurse doar daca userul e logat
+Coverageul pe proiect este de 92% lines covered.
+
+Documentatia swagger poate fi accesata la linkul:http://localhost:8090/swagger-ui/

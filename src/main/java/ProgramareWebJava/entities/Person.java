@@ -3,10 +3,11 @@ package ProgramareWebJava.entities;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 @Entity
@@ -28,7 +29,8 @@ public class Person extends User {
     @URL
     private String picture;
 
-    @Range(min = 18, max = 99)
+    @Min(value = 15, message = "Age should not be less than 15")
+    @Max(value = 90, message = "Age should not be greater than 65")
     private Integer age;
 
     private String job;

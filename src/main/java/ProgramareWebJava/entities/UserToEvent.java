@@ -1,6 +1,7 @@
 package ProgramareWebJava.entities;
 
 import com.sun.istack.NotNull;
+import io.swagger.annotations.ApiModel;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,7 +11,8 @@ import javax.persistence.*;
 @Getter
 @Table(name = "User2event")
 @NoArgsConstructor
-public class User2event {
+@ApiModel(value="UserEvent", description="Mergind class for Many to Many relation between event and user")
+public class UserToEvent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,7 +28,7 @@ public class User2event {
     @NotNull
     protected Person person;
 
-    public User2event(Person person, Event event) {
+    public UserToEvent(Person person, Event event) {
         this.event = event;
         this.person = person;
     }

@@ -3,7 +3,7 @@ package ProgramareWebJava.controllers;
 import ProgramareWebJava.entities.Event;
 import ProgramareWebJava.entities.Location;
 import ProgramareWebJava.entities.Ong;
-import ProgramareWebJava.entities.User2event;
+import ProgramareWebJava.entities.UserToEvent;
 import ProgramareWebJava.services.*;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -35,7 +35,7 @@ public class OngController {
     private EventService eventService;
 
     @Autowired
-    private User2eventService user2eventService;
+    private UserToEventService userToEventService;
 
     @Autowired
     private UserService userService;
@@ -45,8 +45,7 @@ public class OngController {
     @PostMapping(value = "/updateOng")
     @ResponseBody
     @ApiOperation(
-            value = "Ong fields",
-            notes = "Update ong fields",
+            value = "Update ong fields",
             response = String.class)
     public ResponseEntity<String> updateONG(@ApiParam("The ong parameters") @Valid @RequestBody Ong ong) {
         userService.saveUser(ong);
@@ -56,8 +55,7 @@ public class OngController {
     @DeleteMapping("/event/delete/{eventid}")
     @ResponseBody
     @ApiOperation(
-            value = "Find id by event",
-            notes = "Delete event created by ong",
+            value = "Delete event created by ong",
             response = String.class)
     public ResponseEntity<String> deleteEvent(@ApiParam("The id of the event") @PathVariable Integer eventid) {
         deleteUser2Event(eventid);
@@ -66,9 +64,9 @@ public class OngController {
     }
 
     public void deleteUser2Event(Integer eventId) {
-        for (User2event u : user2eventService.listAllUser2events()) {
+        for (UserToEvent u : userToEventService.listAllUser2events()) {
             if (u.getEvent().getId().equals(eventId))
-                user2eventService.deleteUser2event(u.getId());
+                userToEventService.deleteUser2event(u.getId());
         }
     }
 
@@ -76,8 +74,7 @@ public class OngController {
     @PostMapping(value = "/ong/event")
     @ResponseBody
     @ApiOperation(
-            value = "Create event",
-            notes = "Create event by ong with given fields",
+            value = "Create event by ong with given fields",
             response = Event.class)
     public ResponseEntity<Event> saveEvent(HttpServletRequest request,@ApiParam("The parameters of the event")  @RequestParam Map<String, String> parameters) throws ParseException {
 
@@ -94,11 +91,10 @@ public class OngController {
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 
-    @RequestMapping("/ong/event/update")
+    @PostMapping("/ong/event/update")
     @ResponseBody
     @ApiOperation(
-            value = "Update event",
-            notes = "Update event by ong with given fields",
+            value = "Update event by ong with given fields",
             response = String.class)
     public ResponseEntity<String> update(@ApiParam("The parameters of the event") @Valid @RequestBody Event event) {
         eventService.saveEvent(event);
@@ -108,8 +104,7 @@ public class OngController {
     @GetMapping("/ong/myEvents")
     @ResponseBody
     @ApiOperation(
-            value = "Display events",
-            notes = "Display Events by the logged in ong",
+            value = "Display Events by the logged in ong",
             response = List.class)
     public ResponseEntity<List<Event>> getEvents(HttpServletRequest request) {
         String username = request.getSession().getAttribute("username").toString();

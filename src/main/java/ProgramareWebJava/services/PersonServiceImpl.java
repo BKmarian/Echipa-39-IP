@@ -16,7 +16,7 @@ public class PersonServiceImpl implements PersonService {
     private PersonRepository personRepository;
 
     @Autowired
-    private User2eventService user2eventService;
+    private UserToEventService userToEventService;
 
     @Autowired
     private EventService eventService;
@@ -36,7 +36,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Event> getEventsJoined(String username) {
-        List<Event> eventsByPers = user2eventService.getEventsbyPerson((Person) userService.getUserByUsername(username));
+        List<Event> eventsByPers = userToEventService.getEventsbyPerson((Person) userService.getUserByUsername(username));
         List<Event> allEvents = (ArrayList<Event>) eventService.listAllEvents();
         return allEvents.stream().filter(eventsByPers::contains).collect(Collectors.toList());
     }

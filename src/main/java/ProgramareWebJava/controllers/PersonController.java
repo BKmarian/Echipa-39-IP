@@ -2,10 +2,10 @@ package ProgramareWebJava.controllers;
 
 import ProgramareWebJava.entities.Event;
 import ProgramareWebJava.entities.Person;
-import ProgramareWebJava.entities.User2event;
+import ProgramareWebJava.entities.UserToEvent;
 import ProgramareWebJava.services.EventService;
 import ProgramareWebJava.services.PersonService;
-import ProgramareWebJava.services.User2eventService;
+import ProgramareWebJava.services.UserToEventService;
 import ProgramareWebJava.services.UserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -30,7 +30,7 @@ public class PersonController {
     }
 
     @Autowired
-    private User2eventService user2eventService;
+    private UserToEventService userToEventService;
 
     @Autowired
     private EventService eventService;
@@ -41,8 +41,7 @@ public class PersonController {
     @GetMapping("/person/profile")
     @ResponseBody
     @ApiOperation(
-            value = "Show person profile",
-            notes = "Show logged in person profile",
+            value = "Show logged in person profile",
             response = String.class)
     public ResponseEntity<Person> profile(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -53,8 +52,7 @@ public class PersonController {
     @PostMapping(value = "/updatePerson")
     @ResponseBody
     @ApiOperation(
-            value = "Person fields",
-            notes = "Update person fields",
+            value = "Update person fields",
             response = String.class)
     public ResponseEntity<String> updatePerson(@ApiParam("The person parameters") @Valid @RequestBody Person person) {
         userService.saveUser(person);
@@ -64,8 +62,7 @@ public class PersonController {
     @DeleteMapping("/person/event/delete/{eventid}")
     @ResponseBody
     @ApiOperation(
-            value = "Get event by id",
-            notes = "Remove event joined by person",
+            value = "Remove event joined by person",
             response = String.class)
     public ResponseEntity<String> deleteUser2event(@ApiParam("The event id") @PathVariable Integer eventid, HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -79,17 +76,16 @@ public class PersonController {
     }
 
     public void deleteUser2event(int eventid, String username) {
-        for (User2event u : user2eventService.listAllUser2events()) {
+        for (UserToEvent u : userToEventService.listAllUser2events()) {
             if (u.getEvent().getId() == eventid && u.getPerson().getUsername().equals(username))
-                user2eventService.deleteUser2event(u.getId());
+                userToEventService.deleteUser2event(u.getId());
         }
     }
 
     @GetMapping("/person/allevents")
     @ResponseBody
     @ApiOperation(
-            value = "Get user events",
-            notes = "Show events joined by person logged in",
+            value = "Show events joined by person logged in",
             response = List.class)
     public ResponseEntity<List<Event>> allevents(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -100,15 +96,14 @@ public class PersonController {
     @PutMapping("/person/joinevent/{eventid}")
     @ResponseBody
     @ApiOperation(
-            value = "Get event by id",
-            notes = "Person user joins event",
+            value = "Person user joins event",
             response = Event.class)
     public ResponseEntity<Event> addEvent(HttpServletRequest request, @ApiParam("The event of the id") @PathVariable Integer eventid) {
         HttpSession session = request.getSession();
         String username = session.getAttribute("username").toString();
         Person person = (Person) userService.getUserByUsername(username);
         Event event = eventService.getEventById(eventid).get();
-        user2eventService.saveUser2event(new User2event(person, event));
+        userToEventService.saveUser2event(new UserToEvent(person, event));
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 

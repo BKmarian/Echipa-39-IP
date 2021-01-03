@@ -7,6 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Transactional
-public interface User2eventRepository extends CrudRepository<User2event, Integer> {
-    List<User2event> getEventsByPerson(Person person);
+public interface UserToEventRepository extends CrudRepository<UserToEvent, Integer> {
+    List<UserToEvent> getEventsByPerson(Person person);
 }
