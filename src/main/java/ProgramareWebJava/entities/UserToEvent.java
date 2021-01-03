@@ -1,6 +1,7 @@
 package ProgramareWebJava.entities;
 
 import com.sun.istack.NotNull;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import lombok.*;
 
@@ -11,7 +12,8 @@ import javax.persistence.*;
 @Getter
 @Table(name = "User2event")
 @NoArgsConstructor
-@ApiModel(value="UserEvent", description="Mergind class for Many to Many relation between event and user")
+@Api
+@ApiModel(value="UserEvent", description="Merging class for Many to Many relation between event and user")
 public class UserToEvent {
 
     @Id

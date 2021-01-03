@@ -27,7 +27,7 @@ public class SpringFoxConfig {
     private ApiInfo apiInfo() {
         return new ApiInfo(
                 "Proiect Programare Web Java",
-                "An application for persons to find events created by ongs",
+                "An application for persons to find events created by ongs . UserToEvent entity does not appear in swagger documentation",
                 "Version 1",
                 "Terms of service",
                 "sichitiu.marian@yahoo.com",
