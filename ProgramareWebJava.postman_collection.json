@@ -1,0 +1,3645 @@
+{
+	"info": {
+		"_postman_id": "7a4a0ca7-469b-4d69-a871-887803e35852",
+		"name": "ProgramareWebJava",
+		"description": "An application for persons to find events created by ongs . UserToEvent entity does not appear in swagger documentation\n\nContact Support:\n Name: sichitiu.marian@yahoo.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "{{baseUrl}}/admin/acceptong/:ongId",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/acceptong/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"acceptong",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/acceptong/:ongId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"acceptong",
+										":ongId"
+									],
+									"variable": [
+										{
+											"key": "ongId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "sint"
+						},
+						{
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/acceptong/:ongId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"acceptong",
+										":ongId"
+									],
+									"variable": [
+										{
+											"key": "ongId"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/acceptong/:ongId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"acceptong",
+										":ongId"
+									],
+									"variable": [
+										{
+											"key": "ongId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/acceptong/:ongId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"acceptong",
+										":ongId"
+									],
+									"variable": [
+										{
+											"key": "ongId"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/acceptong/:ongId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"acceptong",
+										":ongId"
+									],
+									"variable": [
+										{
+											"key": "ongId"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "{{baseUrl}}/admin/deleteOng/:ongId",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/deleteOng/:ongId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"deleteOng",
+								":ongId"
+							],
+							"variable": [
+								{
+									"key": "ongId",
+									"value": "-72250395",
+									"type": "string",
+									"description": "(Required) The id of the ong user"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/deleteOng/:ongId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"deleteOng",
+										":ongId"
+									],
+									"variable": [
+										{
+											"key": "ongId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "No Content",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/deleteOng/:ongId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"deleteOng",
+										":ongId"
+									],
+									"variable": [
+										{
+											"key": "ongId"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/deleteOng/:ongId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"deleteOng",
+										":ongId"
+									],
+									"variable": [
+										{
+											"key": "ongId"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/deleteOng/:ongId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"deleteOng",
+										":ongId"
+									],
+									"variable": [
+										{
+											"key": "ongId"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "{{baseUrl}}/admin/deletePerson/:personId",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/deletePerson/:personId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"deletePerson",
+								":personId"
+							],
+							"variable": [
+								{
+									"key": "personId",
+									"value": "-72250395",
+									"type": "string",
+									"description": "(Required) The id of the person user"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "No Content",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/deletePerson/:personId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"deletePerson",
+										":personId"
+									],
+									"variable": [
+										{
+											"key": "personId"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/deletePerson/:personId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"deletePerson",
+										":personId"
+									],
+									"variable": [
+										{
+											"key": "personId"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/deletePerson/:personId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"deletePerson",
+										":personId"
+									],
+									"variable": [
+										{
+											"key": "personId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/deletePerson/:personId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"deletePerson",
+										":personId"
+									],
+									"variable": [
+										{
+											"key": "personId"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "{{baseUrl}}/admin/ongs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/ongs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"ongs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/ongs",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"ongs"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/ongs",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"ongs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/ongs",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"ongs"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/ongs",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"ongs"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "{{baseUrl}}/admin/persons",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/persons",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"persons"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/persons",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"persons"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/persons",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"persons"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/persons",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"persons"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/persons",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"persons"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "{{baseUrl}}/login?username=user1&password=password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/login?username=user1&password=password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "user1"
+								},
+								{
+									"key": "password",
+									"value": "password"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "{{baseUrl}}/login?username=admin&password=admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/login?username=admin&password=admin",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin"
+								},
+								{
+									"key": "password",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/login?parameters=sed",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									],
+									"query": [
+										{
+											"key": "parameters",
+											"value": "sed"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/login?parameters=sed",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									],
+									"query": [
+										{
+											"key": "parameters",
+											"value": "sed"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/login?parameters=sed",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									],
+									"query": [
+										{
+											"key": "parameters",
+											"value": "sed"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/login?parameters=sed",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									],
+									"query": [
+										{
+											"key": "parameters",
+											"value": "sed"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/login?parameters=sed",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									],
+									"query": [
+										{
+											"key": "parameters",
+											"value": "sed"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "sint"
+						}
+					]
+				},
+				{
+					"name": "{{baseUrl}}/login?username=ong1&password=password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/login?username=ong1&password=password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "ong1"
+								},
+								{
+									"key": "password",
+									"value": "password"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ong",
+			"item": [
+				{
+					"name": "event",
+					"item": [
+						{
+							"name": "{{baseUrl}}/ong/event",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/ong/event?date=2020-10-11&description=Nimic special&name=Eveniment caritabil&address=strada Tudor Vladimirescu&postal_code=12012",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"ong",
+										"event"
+									],
+									"query": [
+										{
+											"key": "date",
+											"value": "2020-10-11",
+											"description": "(Required) The parameters of the event"
+										},
+										{
+											"key": "description",
+											"value": "Nimic special"
+										},
+										{
+											"key": "name",
+											"value": "Eveniment caritabil"
+										},
+										{
+											"key": "address",
+											"value": "strada Tudor Vladimirescu"
+										},
+										{
+											"key": "postal_code",
+											"value": "12012"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/ong/event?parameters=sed",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"ong",
+												"event"
+											],
+											"query": [
+												{
+													"key": "parameters",
+													"value": "sed"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/ong/event?parameters=sed",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"ong",
+												"event"
+											],
+											"query": [
+												{
+													"key": "parameters",
+													"value": "sed"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/ong/event?parameters=sed",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"ong",
+												"event"
+											],
+											"query": [
+												{
+													"key": "parameters",
+													"value": "sed"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Forbidden",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/ong/event?parameters=sed",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"ong",
+												"event"
+											],
+											"query": [
+												{
+													"key": "parameters",
+													"value": "sed"
+												}
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/ong/event?parameters=sed",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"ong",
+												"event"
+											],
+											"query": [
+												{
+													"key": "parameters",
+													"value": "sed"
+												}
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "{{baseUrl}}/ong/event/update",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"approved\": false,\n    \"date\": \"1957-02-13T21:30:35.650Z\",\n    \"description\": \"minim\",\n    \"id\": 70563842,\n    \"location\": {\n        \"address\": \"eiusmod dolor ullamco in\",\n        \"location_id\": 59655773,\n        \"postalCode\": \"sit consequat\"\n    },\n    \"name\": \"proident non enim dolor\",\n    \"ong\": {\n        \"approved\": false,\n        \"contact\": \"et officia in\",\n        \"email\": \"irure cupidatat mollit\",\n        \"fiscalcode\": \"3850\",\n        \"fullName\": \"in velit\",\n        \"id\": 87529816,\n        \"isadmin\": true,\n        \"password\": \"sunt\",\n        \"phone\": \"0\",\n        \"username\": \"aliquip dolor nulla\"\n    }\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/ong/event/update",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"ong",
+										"event",
+										"update"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"approved\": false,\n    \"date\": \"1957-02-13T21:30:35.650Z\",\n    \"description\": \"minim\",\n    \"id\": 70563842,\n    \"location\": {\n        \"address\": \"eiusmod dolor ullamco in\",\n        \"location_id\": 59655773,\n        \"postalCode\": \"sit consequat\"\n    },\n    \"name\": \"proident non enim dolor\",\n    \"ong\": {\n        \"approved\": false,\n        \"contact\": \"et officia in\",\n        \"email\": \"irure cupidatat mollit\",\n        \"fiscalcode\": \"3850\",\n        \"fullName\": \"in velit\",\n        \"id\": 87529816,\n        \"isadmin\": true,\n        \"password\": \"sunt\",\n        \"phone\": \"0\",\n        \"username\": \"aliquip dolor nulla\"\n    }\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/ong/event/update",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"ong",
+												"event",
+												"update"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"approved\": false,\n    \"date\": \"1957-02-13T21:30:35.650Z\",\n    \"description\": \"minim\",\n    \"id\": 70563842,\n    \"location\": {\n        \"address\": \"eiusmod dolor ullamco in\",\n        \"location_id\": 59655773,\n        \"postalCode\": \"sit consequat\"\n    },\n    \"name\": \"proident non enim dolor\",\n    \"ong\": {\n        \"approved\": false,\n        \"contact\": \"et officia in\",\n        \"email\": \"irure cupidatat mollit\",\n        \"fiscalcode\": \"3850\",\n        \"fullName\": \"in velit\",\n        \"id\": 87529816,\n        \"isadmin\": true,\n        \"password\": \"sunt\",\n        \"phone\": \"0\",\n        \"username\": \"aliquip dolor nulla\"\n    }\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/ong/event/update",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"ong",
+												"event",
+												"update"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "sint"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"approved\": false,\n    \"date\": \"1957-02-13T21:30:35.650Z\",\n    \"description\": \"minim\",\n    \"id\": 70563842,\n    \"location\": {\n        \"address\": \"eiusmod dolor ullamco in\",\n        \"location_id\": 59655773,\n        \"postalCode\": \"sit consequat\"\n    },\n    \"name\": \"proident non enim dolor\",\n    \"ong\": {\n        \"approved\": false,\n        \"contact\": \"et officia in\",\n        \"email\": \"irure cupidatat mollit\",\n        \"fiscalcode\": \"3850\",\n        \"fullName\": \"in velit\",\n        \"id\": 87529816,\n        \"isadmin\": true,\n        \"password\": \"sunt\",\n        \"phone\": \"0\",\n        \"username\": \"aliquip dolor nulla\"\n    }\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/ong/event/update",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"ong",
+												"event",
+												"update"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"approved\": false,\n    \"date\": \"1957-02-13T21:30:35.650Z\",\n    \"description\": \"minim\",\n    \"id\": 70563842,\n    \"location\": {\n        \"address\": \"eiusmod dolor ullamco in\",\n        \"location_id\": 59655773,\n        \"postalCode\": \"sit consequat\"\n    },\n    \"name\": \"proident non enim dolor\",\n    \"ong\": {\n        \"approved\": false,\n        \"contact\": \"et officia in\",\n        \"email\": \"irure cupidatat mollit\",\n        \"fiscalcode\": \"3850\",\n        \"fullName\": \"in velit\",\n        \"id\": 87529816,\n        \"isadmin\": true,\n        \"password\": \"sunt\",\n        \"phone\": \"0\",\n        \"username\": \"aliquip dolor nulla\"\n    }\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/ong/event/update",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"ong",
+												"event",
+												"update"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Forbidden",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"approved\": false,\n    \"date\": \"1957-02-13T21:30:35.650Z\",\n    \"description\": \"minim\",\n    \"id\": 70563842,\n    \"location\": {\n        \"address\": \"eiusmod dolor ullamco in\",\n        \"location_id\": 59655773,\n        \"postalCode\": \"sit consequat\"\n    },\n    \"name\": \"proident non enim dolor\",\n    \"ong\": {\n        \"approved\": false,\n        \"contact\": \"et officia in\",\n        \"email\": \"irure cupidatat mollit\",\n        \"fiscalcode\": \"3850\",\n        \"fullName\": \"in velit\",\n        \"id\": 87529816,\n        \"isadmin\": true,\n        \"password\": \"sunt\",\n        \"phone\": \"0\",\n        \"username\": \"aliquip dolor nulla\"\n    }\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/ong/event/update",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"ong",
+												"event",
+												"update"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "{{baseUrl}}/ong/myEvents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ong/myEvents",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ong",
+								"myEvents"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/ong/myEvents",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"ong",
+										"myEvents"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/ong/myEvents",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"ong",
+										"myEvents"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/ong/myEvents",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"ong",
+										"myEvents"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/ong/myEvents",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"ong",
+										"myEvents"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "person",
+			"item": [
+				{
+					"name": "{{baseUrl}}/person/allevents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/person/allevents",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"person",
+								"allevents"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/person/allevents",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										"allevents"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/person/allevents",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										"allevents"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/person/allevents",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										"allevents"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/person/allevents",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										"allevents"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "{{baseUrl}}/person/event/delete/:eventid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/person/event/delete/4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"person",
+								"event",
+								"delete",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/person/event/delete/:eventid",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										"event",
+										"delete",
+										":eventid"
+									],
+									"variable": [
+										{
+											"key": "eventid"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/person/event/delete/:eventid",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										"event",
+										"delete",
+										":eventid"
+									],
+									"variable": [
+										{
+											"key": "eventid"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "sint"
+						},
+						{
+							"name": "No Content",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/person/event/delete/:eventid",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										"event",
+										"delete",
+										":eventid"
+									],
+									"variable": [
+										{
+											"key": "eventid"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/person/event/delete/:eventid",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										"event",
+										"delete",
+										":eventid"
+									],
+									"variable": [
+										{
+											"key": "eventid"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "{{baseUrl}}/person/joinevent/:eventid",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/person/joinevent/4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"person",
+								"joinevent",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/person/joinevent/:eventid",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										"joinevent",
+										":eventid"
+									],
+									"variable": [
+										{
+											"key": "eventid"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/person/joinevent/:eventid",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										"joinevent",
+										":eventid"
+									],
+									"variable": [
+										{
+											"key": "eventid"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/person/joinevent/:eventid",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										"joinevent",
+										":eventid"
+									],
+									"variable": [
+										{
+											"key": "eventid"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/person/joinevent/:eventid",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										"joinevent",
+										":eventid"
+									],
+									"variable": [
+										{
+											"key": "eventid"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Created",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/person/joinevent/:eventid",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										"joinevent",
+										":eventid"
+									],
+									"variable": [
+										{
+											"key": "eventid"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "{{baseUrl}}/person/profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/person/profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"person",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/person/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										"profile"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/person/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										"profile"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/person/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										"profile"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/person/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "{{baseUrl}}/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "*/*"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "{{baseUrl}}/changepassword/:username",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/changepassword/user1?password=password&verifypassword=password1&newpassword=password1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"changepassword",
+						"user1"
+					],
+					"query": [
+						{
+							"key": "password",
+							"value": "password",
+							"description": "(Required) Password parameters"
+						},
+						{
+							"key": "verifypassword",
+							"value": "password1"
+						},
+						{
+							"key": "newpassword",
+							"value": "password1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/changepassword/:username?parameters=sed",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"changepassword",
+								":username"
+							],
+							"query": [
+								{
+									"key": "parameters",
+									"value": "sed"
+								}
+							],
+							"variable": [
+								{
+									"key": "username"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "*/*"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/changepassword/:username?parameters=sed",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"changepassword",
+								":username"
+							],
+							"query": [
+								{
+									"key": "parameters",
+									"value": "sed"
+								}
+							],
+							"variable": [
+								{
+									"key": "username"
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/changepassword/:username?parameters=sed",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"changepassword",
+								":username"
+							],
+							"query": [
+								{
+									"key": "parameters",
+									"value": "sed"
+								}
+							],
+							"variable": [
+								{
+									"key": "username"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/changepassword/:username?parameters=sed",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"changepassword",
+								":username"
+							],
+							"query": [
+								{
+									"key": "parameters",
+									"value": "sed"
+								}
+							],
+							"variable": [
+								{
+									"key": "username"
+								}
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/changepassword/:username?parameters=sed",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"changepassword",
+								":username"
+							],
+							"query": [
+								{
+									"key": "parameters",
+									"value": "sed"
+								}
+							],
+							"variable": [
+								{
+									"key": "username"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "{{baseUrl}}/createong",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"approved\": false,\n    \"contact\": \"laboris sit Duis\",\n    \"email\": \"sichitiu.marian@yahoo.com\",\n    \"fiscalcode\": \"8022623006\",\n    \"fullName\": \"reprehenderit cillum in dolore\",\n    \"password\": \"password\",\n    \"phone\": \"08179512\",\n    \"username\": \"ong1\",\n    \"id\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/createong",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"createong"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/createong",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"createong"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/createong",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"createong"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Created",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/createong",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"createong"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/createong",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"createong"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "*/*"
+						}
+					],
+					"cookie": [],
+					"body": "sint"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/createong",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"createong"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "{{baseUrl}}/createperson",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"age\": 89,\n    \"email\": \"sichitium@yahoo.com\",\n    \"fullName\": \"officia cupidatat esse id\",\n    \"id\": 3,\n    \"job\": \"aliquip eiusmo\",\n    \"password\": \"password\",\n    \"phone\": \"20192651996\",\n    \"username\": \"user1\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/createperson",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"createperson"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/createperson",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"createperson"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Created",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/createperson",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"createperson"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/createperson",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"createperson"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "*/*"
+						}
+					],
+					"cookie": [],
+					"body": "sint"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/createperson",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"createperson"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/createperson",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"createperson"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "{{baseUrl}}/event/delete/:eventid",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/event/delete/:eventid",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"event",
+						"delete",
+						":eventid"
+					],
+					"variable": [
+						{
+							"key": "eventid",
+							"value": "-72250395",
+							"type": "string",
+							"description": "(Required) The id of the event"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "No Content",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/event/delete/:eventid",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"event",
+								"delete",
+								":eventid"
+							],
+							"variable": [
+								{
+									"key": "eventid"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/event/delete/:eventid",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"event",
+								"delete",
+								":eventid"
+							],
+							"variable": [
+								{
+									"key": "eventid"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "*/*"
+						}
+					],
+					"cookie": [],
+					"body": "sint"
+				},
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/event/delete/:eventid",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"event",
+								"delete",
+								":eventid"
+							],
+							"variable": [
+								{
+									"key": "eventid"
+								}
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/event/delete/:eventid",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"event",
+								"delete",
+								":eventid"
+							],
+							"variable": [
+								{
+									"key": "eventid"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "{{baseUrl}}/logout",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/logout",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "*/*"
+						}
+					],
+					"cookie": [],
+					"body": "sint"
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "{{baseUrl}}/updateOng",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"approved\": true,\n    \"contact\": \"laboris sit Duis\",\n    \"email\": \"mollit ullamco aute dolore\",\n    \"fiscalcode\": \"8022623006\",\n    \"fullName\": \"reprehenderit cillum in dolore\",\n    \"id\": 35266064,\n    \"isadmin\": true,\n    \"password\": \"aliqua est\",\n    \"phone\": \"08179512\",\n    \"username\": \"incididunt voluptate amet ut\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/updateOng",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"updateOng"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/updateOng",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updateOng"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/updateOng",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updateOng"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "*/*"
+						}
+					],
+					"cookie": [],
+					"body": "sint"
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/updateOng",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updateOng"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/updateOng",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updateOng"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/updateOng",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updateOng"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "{{baseUrl}}/updatePerson",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"age\": 89,\n    \"email\": \"Excepteur ut sed magna in\",\n    \"fullName\": \"officia cupidatat esse id\",\n    \"id\": -40809601,\n    \"isadmin\": false,\n    \"job\": \"aliquip eiusmo\",\n    \"password\": \"sit proident cupidatat fugiat\",\n    \"phone\": \"20192651996\",\n    \"picture\": \"ipsum quis do in sint\",\n    \"username\": \"in mollit\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/updatePerson",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"updatePerson"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/updatePerson",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updatePerson"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/updatePerson",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updatePerson"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/updatePerson",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updatePerson"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "*/*"
+						}
+					],
+					"cookie": [],
+					"body": "sint"
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/updatePerson",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updatePerson"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/updatePerson",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updatePerson"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:8090"
+		}
+	]
+}
