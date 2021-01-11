@@ -53,6 +53,9 @@ public class IndexController {
         HttpSession session = request.getSession();
         String name = session.getAttribute("username").toString();
         session.invalidate();
+        if(name == null) {
+            throw new RuntimeException("No user is logged in");
+        }
         return new ResponseEntity<>("Logout user " + name, HttpStatus.OK);
     }
 
@@ -68,15 +71,15 @@ public class IndexController {
             User user = userService.getUserByUsername(username);
             if (user != null && user.getPassword().equals(password)) {
                 request.getSession().setAttribute("username", username);
-                if (user.getIsadmin())
-                    return new ResponseEntity<>("Admin connected with name" + user.getUsername(), HttpStatus.OK);
+                if (user.getIsadmin() != null && user.getIsadmin())
+                    return new ResponseEntity<>("Admin connected with name " + user.getUsername(), HttpStatus.OK);
                 if (user instanceof Person)
                     return new ResponseEntity<>("Person connected with name " + user.getUsername(), HttpStatus.OK);
                 else
                     return new ResponseEntity<>("Ong connected with name " + user.getUsername(), HttpStatus.OK);
 
             }
-            return new ResponseEntity<>("User does not exist", HttpStatus.OK);
+            return new ResponseEntity<>("User does not exist ", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Error while logging " + e.getMessage(), HttpStatus.OK);
         }

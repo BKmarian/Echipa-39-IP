@@ -263,7 +263,7 @@ public class PersonControllerTest {
                 .param(csrfToken.getParameterName(), csrfToken.getToken())
                 .secure(true))
                 .andExpect(status().isOk())
-                .andExpect(content().string(org.hamcrest.Matchers.containsString("Deleted user username3")));
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("Deleted user's username3 event")));
 
         assertEquals(userToEventService.getEventsbyPerson((Person) userService.getUserByUsername("username3")).size(), 0);
 

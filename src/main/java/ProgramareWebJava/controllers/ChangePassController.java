@@ -30,7 +30,7 @@ public class ChangePassController {
     @ApiOperation(
             value = "Change user password",
             response = User.class)
-    public ResponseEntity<User> changePassword(@ApiParam("The username of the user") @PathVariable("username") String username,
+    public ResponseEntity<String> changePassword(@ApiParam("The username of the user") @PathVariable("username") String username,
                                                @ApiParam("Password parameters") @RequestParam Map<String, String> parameters) {
         User user = userService.getUserByUsername(username);
         String password = parameters.get("password");
@@ -40,9 +40,9 @@ public class ChangePassController {
             user.setPassword(newPassword);
             userService.saveUser(user);
             //SmtpMailSender.sendMail(user.getEmail(), newPassword, "Your current password is " + password + " and username is " + user);
-            return new ResponseEntity<>(user, HttpStatus.OK);
+            return new ResponseEntity<>("New Password is " + newPassword, HttpStatus.OK);
         } else
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Passwords do not match", HttpStatus.BAD_REQUEST);
     }
 
 }

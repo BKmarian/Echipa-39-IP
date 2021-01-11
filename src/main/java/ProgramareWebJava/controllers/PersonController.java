@@ -69,9 +69,9 @@ public class PersonController {
         String username = session.getAttribute("username").toString();
         try {
             deleteUser2event(eventid, username);
-            return new ResponseEntity<>("Deleted user " + username, HttpStatus.OK);
+            return new ResponseEntity<>("Deleted user's " + username + " event with id " + eventid, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error deleting user " + username, HttpStatus.EXPECTATION_FAILED);
+            return new ResponseEntity<>("Error delete user's " + username + "event " + eventid, HttpStatus.EXPECTATION_FAILED);
         }
     }
 
