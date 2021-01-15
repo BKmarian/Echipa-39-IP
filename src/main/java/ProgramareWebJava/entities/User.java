@@ -30,14 +30,13 @@ public abstract class User {
     @Email
     protected String email;
 
-    @Builder.Default
     protected Boolean isadmin = false;
 
     public User(String username, String password, String email, Boolean isadmin) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.isadmin = isadmin;
+        this.isadmin = (isadmin != null) ? isadmin : false;
 
     }
 
