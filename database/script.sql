@@ -46,7 +46,7 @@ CREATE TABLE `userToEvent` (
                               FOREIGN KEY `fk2` (user_id) REFERENCES `user`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- INSERT INTO `user`(`username`,`password`,`full_name`,`email`,`isadmin`,`user_type`) VALUES ('admin','admin','marian sichitiu','ms@yahoo.com',true,'person');
+INSERT INTO `user`(`username`,`password`,`full_name`,`email`,`isadmin`,`user_type`) VALUES ('admin','admin','marian sichitiu','ms@yahoo.com',true,'person');
 -- INSERT INTO `user`(`username`,`password`,`full_name`,`email`,`user_type`) VALUES ('marian','parola','marian sichitiu','sichitium@yahoo.com','person');
 -- INSERT INTO `user`(`full_name`,`username`,`password`,`email`,`user_type`) values ('ong','ong','parola','sichitiu.marian@yahoo.com','ong');
 

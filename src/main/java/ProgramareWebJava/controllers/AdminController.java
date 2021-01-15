@@ -84,7 +84,7 @@ public class AdminController {
     @ApiOperation(
             value = "Admin accepts ong",
             response = String.class)
-    public ResponseEntity<String> acceptOngPost(@ApiParam("The id of the ong user") @PathVariable Integer ongId) {
+    public ResponseEntity<String> acceptOng(@ApiParam("The id of the ong user") @PathVariable Integer ongId) {
         Ong ong = (Ong) userService.getUserById(ongId);
         ong.setApproved(true);
         userService.saveUser(ong);

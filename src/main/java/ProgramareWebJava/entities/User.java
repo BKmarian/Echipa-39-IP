@@ -30,7 +30,8 @@ public abstract class User {
     @Email
     protected String email;
 
-    protected Boolean isadmin;
+    @Builder.Default
+    protected Boolean isadmin = false;
 
     public User(String username, String password, String email, Boolean isadmin) {
         this.username = username;
